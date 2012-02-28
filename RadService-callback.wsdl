@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s0="http://www.PAHospital.org/RadiologyCallbackService/"
+  targetNamespace="http://www.PAHospital.org/RadiologyCallbackService/">
+
+  <types>
+    <xsd:schema targetNamespace="http://www.PAHospital.org/RadiologyCallbackService/">
+      <xsd:element name="RadiologyReport">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="PatientID" type="xsd:string" />
+            <xsd:element name="RadiologyOrderID" type="xsd:string" />
+            <xsd:element name="DateOfExamination" type="xsd:date" />
+            <xsd:element name="ReportText" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <message name="RadiologyReportRequest">
+    <part name="RadiologyReport" element="s0:RadiologyReport" />
+  </message>
+
+  <portType name="RadiologyCallback">
+    <operation name="SendRadiologyReport">
+      <input message="s0:RadiologyReportRequest" />
+    </operation>
+  </portType>
+
+  <binding name="RadiologyCallbackBinding" type="s0:RadiologyCallback">
+    <soap:binding style="document"
+      transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="SendRadiologyReport">
+      <soap:operation
+        soapAction="http://www.PAHospital.org/RadiologyCallbackService/SendRadiologyReport" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+    </operation>
+  </binding>
+
+  <!-- Service defines the address of Web service -->
+  <service name="RadiologyCallbackService">
+    <port name="RadiologyCallbackPort" binding="s0:RadiologyCallbackBinding">
+      <soap:address location="http://www.PAHospital.org/RadiologyCallbackService" />
+    </port>
+  </service>
+
+</definitions>
