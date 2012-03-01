@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="http://www.PAHospital.org/RadiologyService/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s0="http://www.PAHospital.org/RadiologyService/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/">
+  <types>
+    <xsd:schema targetNamespace="http://www.PAHospital.org/RadiologyService/">
+      <xsd:element name="RadiologyOrder">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="PatientID" type="xsd:string"/>
+            <xsd:element name="CaseID" type="xsd:string"/>
+            <xsd:element name="ExaminationType">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="XRAY"/>
+                  <xsd:enumeration value="CT"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RadiologyReport">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="PatientID" type="xsd:string"/>
+            <xsd:element name="RadiologyOrderID" type="xsd:string"/>
+            <xsd:element name="DateOfExamination" type="xsd:date"/>
+            <xsd:element name="ReportText" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RadiologyOrderID" type="xsd:string"/>
+      <xsd:element name="RadiologyOrderIDForPayment" type="xsd:string"/>
+      <xsd:element name="OrderStatus">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="OrderID" type="xsd:string"/>
+            <xsd:element name="OrderStatus" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Appointment">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="OrderID" type="xsd:string"/>
+            <xsd:element name="Date" type="xsd:date"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+  <message name="RadiologyMakePaymentRequest">
+    <part name="RadiologyOrderID" element="s0:RadiologyOrderIDForPayment">
+    </part>
+  </message>
+  <message name="RadiologyGetOrderStatusResponse">
+    <part name="RadOrderStatus" element="s0:OrderStatus">
+    </part>
+  </message>
+  <message name="RadiologyRequestAppointmentResponse">
+    <part name="RadiologyAppointmentResponse" element="s0:Appointment">
+    </part>
+  </message>
+  <message name="RadiologyOrderRadExaminationResponse">
+    <part name="RadiologyOrderID" element="s0:RadiologyOrderID">
+    </part>
+  </message>
+  <message name="RadiologyOrderRadExaminationRequest">
+    <part name="Order" element="s0:RadiologyOrder">
+    </part>
+  </message>
+  <message name="RadiologyGetOrderStatusRequest">
+    <part name="RadiologyOrderID" element="s0:RadiologyOrderID">
+    </part>
+  </message>
+  <message name="RadiologyRequestAppointmentRequest">
+    <part name="RadiologyAppointmentRequest" element="s0:Appointment">
+    </part>
+  </message>
+  <portType name="Radiology">
+    <operation name="OrderRadiologyExamination">
+      <input message="s0:RadiologyOrderRadExaminationRequest">
+    </input>
+      <output message="s0:RadiologyOrderRadExaminationResponse">
+    </output>
+    </operation>
+    <operation name="RequestAppointment">
+      <input message="s0:RadiologyRequestAppointmentRequest">
+    </input>
+      <output message="s0:RadiologyRequestAppointmentResponse">
+    </output>
+    </operation>
+    <operation name="GetOrderStatus">
+      <input message="s0:RadiologyGetOrderStatusRequest">
+    </input>
+      <output message="s0:RadiologyGetOrderStatusResponse">
+    </output>
+    </operation>
+    <operation name="MakePayment">
+      <input message="s0:RadiologyMakePaymentRequest">
+    </input>
+    </operation>
+  </portType>
+  <binding name="RadiologyBinding" type="s0:Radiology">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="OrderRadiologyExamination">
+      <soap:operation soapAction="http://www.PAHospital.org/RadiologyService/OrderRadiologyExamination"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RequestAppointment">
+      <soap:operation soapAction="http://www.PAHospital.org/RadiologyService/RequestAppointment"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="GetOrderStatus">
+      <soap:operation soapAction="http://www.PAHospital.org/RadiologyService/GetOrderStatus"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="MakePayment">
+      <soap:operation soapAction="http://www.PAHospital.org/RadiologyService/MakePayment"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+    </operation>
+  </binding>
+  <service name="RadiologyService">
+    <port name="RadiologyPort" binding="s0:RadiologyBinding">
+      <soap:address location="http://www.PAHospital.org/RadiologyService"/>
+    </port>
+  </service>
+</definitions>
