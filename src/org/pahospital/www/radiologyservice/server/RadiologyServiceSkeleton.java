@@ -54,7 +54,8 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	 */
 	public OrderStatus getOrderStatus(RadiologyOrderID radiologyOrderID) throws SOAPException {
 		if(orderStatuses.containsKey(radiologyOrderID)) {
-			return orderStatuses.get(radiologyOrderID);
+			OrderStatus status = orderStatuses.get(radiologyOrderID);
+			return status;
 		} else {
 			throw new SOAPException("Radiology order ID unknown, please provide an existing order ID.");
 		}
