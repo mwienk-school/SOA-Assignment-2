@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="jar.server">
+<project basedir="." default="jar.client">
     <!--Auto generated ant build file-->
     <property environment="env"/>
     <property name="axis2.home" value="${env.AXIS2_HOME}"/>
     <property name="project.base.dir" value="."/>
     <property name="maven.class.path" value=""/>
-    <property name="name" value="RadiologyCallbackService"/>
+    <property name="name" value="RadiologyService"/>
     <property name="src" value="${project.base.dir}/src"/>
     <property name="test" value="${project.base.dir}/test"/>
     <property name="build" value="${project.base.dir}/build"/>
