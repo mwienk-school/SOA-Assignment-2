@@ -18,13 +18,13 @@ import org.pahospital.www.radiologyservice.*;
  */
 public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterface {
 	//Keep track of the RadiologyOrder objects with their IDs, statuses and payments
-	protected HashMap<RadiologyOrderID,RadiologyOrder> orderList = new HashMap<RadiologyOrderID,RadiologyOrder>();
-	protected int maxOrderId = 0;
-	protected HashMap<RadiologyOrderID,OrderStatus> orderStatuses = new HashMap<RadiologyOrderID, OrderStatus>();
-	protected HashMap<RadiologyOrderID,Boolean> payments = new HashMap<RadiologyOrderID, Boolean>();
-	protected HashMap<RadiologyOrderID,RadiologyReport> reports = new HashMap<RadiologyOrderID, RadiologyReport>();
+	protected static HashMap<String,RadiologyOrder> orderList = new HashMap<String,RadiologyOrder>();
+	protected static int maxOrderId = 0;
+	protected static HashMap<String,OrderStatus> orderStatuses = new HashMap<String, OrderStatus>();
+	protected static HashMap<String,Boolean> payments = new HashMap<String, Boolean>();
+	protected static HashMap<String,RadiologyReport> reports = new HashMap<String, RadiologyReport>();
 	//Keep track of the Appointments
-	protected ArrayList<Appointment> appointments = new ArrayList<Appointment>();
+	protected static ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 	
 
 	/**
@@ -36,18 +36,18 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	 */
 
 	public Appointment requestAppointment(Appointment appointment) throws SOAPException {
-		RadiologyOrderID id = new RadiologyOrderID();
-		id.setRadiologyOrderID(appointment.getOrderID());
-		if(orderList.containsKey(id.getRadiologyOrderID())) {
+		Appointment result = null;
+		if(orderList.containsKey(appointment.getOrderID())) {
 			//Insert the appointment
 			appointments.add(appointment);
 			//Change OrderStatus
 			orderStatuses.get(appointment.getOrderID()).setOrderStatus("appointment made");
-			reports.get(id.getRadiologyOrderID()).setDateOfExamination(appointment.getDate());
-			return appointment;
+			reports.get(appointment.getOrderID()).setDateOfExamination(appointment.getDate());
+			result = appointment;
 		} else {
-			throw new SOAPException("Radiology order ID unknown, please provide an existing order ID.");
+			throw new SOAPException("Provide a valid OrderID");
 		}
+		return result;
 	}
 
 	/**
@@ -58,11 +58,11 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	 * @throws SOAPException 
 	 */
 	public OrderStatus getOrderStatus(RadiologyOrderID radiologyOrderID) throws SOAPException {
-		if(orderStatuses.containsKey(radiologyOrderID)) {
-			OrderStatus status = orderStatuses.get(radiologyOrderID);
+		if(orderStatuses.containsKey(radiologyOrderID.getRadiologyOrderID())) {
+			OrderStatus status = orderStatuses.get(radiologyOrderID.getRadiologyOrderID());
 			return status;
 		} else {
-			throw new SOAPException("Radiology order ID unknown, please provide an existing order ID.");
+			throw new SOAPException("Radiology order ID unknown, please provide an existing order ID. Provided: " + radiologyOrderID.getRadiologyOrderID());
 		}
 	}
 
@@ -75,13 +75,9 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	 */
 
 	public void makePayment(RadiologyOrderIDForPayment radiologyOrderIDForPayment) throws SOAPException {
-		//Convert RadiologyOrderIDForPayment to RadiologyOrderID
-		RadiologyOrderID id = new RadiologyOrderID();
-		id.setRadiologyOrderID(radiologyOrderIDForPayment.getRadiologyOrderIDForPayment());
-		
 		//Set RadiologyOrder as paid
-		if(!payments.get(id)) {
-			payments.put(id,true);
+		if(!payments.get(radiologyOrderIDForPayment.getRadiologyOrderIDForPayment())) {
+			payments.put(radiologyOrderIDForPayment.getRadiologyOrderIDForPayment(),true);
 		} else {
 			throw new SOAPException("This order has already been paid");
 		}
@@ -97,17 +93,17 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	 */
 	public RadiologyOrderID orderRadiologyExamination(RadiologyOrder radiologyOrder) throws SOAPException, InterruptedException {
 		RadiologyOrderID id = new RadiologyOrderID();
-		id.setRadiologyOrderID(String.valueOf(this.maxOrderId));
-		if(!this.orderList.containsKey(id)) {
+		id.setRadiologyOrderID(String.valueOf(maxOrderId));
+		if(!orderList.containsKey(id.getRadiologyOrderID())) {
 			//Insert the order
-			this.orderList.put(id,radiologyOrder);
+			orderList.put(id.getRadiologyOrderID(),radiologyOrder);
 			//Insert the status
 			OrderStatus status = new OrderStatus();
 			status.setOrderID(id.getRadiologyOrderID());
 			status.setOrderStatus("ordered");
-			this.orderStatuses.put(id, status);
+			orderStatuses.put(id.getRadiologyOrderID(), status);
 			//Insert the payment
-			payments.put(id, false);
+			payments.put(id.getRadiologyOrderID(), false);
 			
 			//Create a report for this order
 			RadiologyReport report = new RadiologyReport();
@@ -115,13 +111,13 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 			report.setReportText("The result was very positive");
 			report.setPatientID(radiologyOrder.getPatientID());
 			report.setDateOfExamination(new java.util.Date());
-			reports.put(id, report);
+			reports.put(id.getRadiologyOrderID(), report);
 			
 			//Increment the id
-			this.maxOrderId++;
+			maxOrderId++;
 			
 			//Send the report back tot the client
-			(new Thread(new RadiologyReporter(id,reports))).start();
+			(new Thread(new RadiologyReporter(id.getRadiologyOrderID(),reports))).start();
 		} else {
 			throw new SOAPException("Internal error: RadiologyOrderID exists.");
 		}

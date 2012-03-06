@@ -9,8 +9,8 @@ import org.pahospital.www.radiologyservice.RadiologyOrderID;
 import org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport;
 
 public class RadiologyReporter implements Runnable {
-	private HashMap<RadiologyOrderID,RadiologyReport> reports;
-	private RadiologyOrderID id;
+	private HashMap<String,RadiologyReport> reports;
+	private String id;
 
 	@Override
 	public void run() {
@@ -34,7 +34,7 @@ public class RadiologyReporter implements Runnable {
 	 * @param id
 	 * @param reports
 	 */
-	public RadiologyReporter(RadiologyOrderID id, HashMap<RadiologyOrderID,RadiologyReport> reports) {
+	public RadiologyReporter(String id, HashMap<String,RadiologyReport> reports) {
 		this.id = id;
 		this.reports = reports;
 	}

@@ -139,7 +139,8 @@ public class RadiologyServiceClient extends JFrame {
 					ro.setPatientID(patientId.getText());
 					ro.setCaseID(caseId.getText());
 					ro.setExaminationType(examtype);
-					stub.orderRadiologyExamination(ro);
+					RadiologyOrderID id = stub.orderRadiologyExamination(ro);
+					responsePane.setText("Assigned ID: " + id.getRadiologyOrderID());
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -163,7 +164,8 @@ public class RadiologyServiceClient extends JFrame {
 					Date date;
 					date = formatter.parse(appointmentDate.getText());
 					app.setDate(date);
-					stub.requestAppointment(app);
+					Appointment appointment = stub.requestAppointment(app);
+					responsePane.setText("Appointment made: " + appointment.getDate());
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -186,7 +188,8 @@ public class RadiologyServiceClient extends JFrame {
 					url = urlField.getText();
 					RadiologyOrderID roi = new RadiologyOrderID();
 					roi.setRadiologyOrderID(statusOrderId.getText());
-					stub.getOrderStatus(roi);
+					OrderStatus status = stub.getOrderStatus(roi);
+					responsePane.setText("ID:" + status.getOrderID() + " Status: " + status.getOrderStatus());
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -207,6 +210,7 @@ public class RadiologyServiceClient extends JFrame {
 					RadiologyOrderIDForPayment roifp = new RadiologyOrderIDForPayment();
 					roifp.setRadiologyOrderIDForPayment(paymentOrderId.getText());
 					stub.makePayment(roifp);
+					responsePane.setText("Exam paid.");
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
