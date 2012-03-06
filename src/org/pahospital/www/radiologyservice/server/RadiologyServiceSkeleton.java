@@ -15,7 +15,6 @@ import org.pahospital.www.radiologycallbackservice.*;
 import org.pahospital.www.radiologycallbackservice.RadiologyReport;
 import org.pahospital.www.radiologyservice.*;
 
-
 /**
  * RadiologyServiceSkeleton java skeleton for the axisService
  */
