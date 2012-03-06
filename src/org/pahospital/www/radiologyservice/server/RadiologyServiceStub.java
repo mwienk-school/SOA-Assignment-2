@@ -1,1284 +1,1427 @@
-
 /**
  * RadiologyServiceStub.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.6.1  Built on : Aug 31, 2011 (12:22:40 CEST)
  */
-        package org.pahospital.www.radiologyservice.server;
+package org.pahospital.www.radiologyservice.server;
 
-        
+/*
+ *  RadiologyServiceStub java implementation
+ */
 
-        /*
-        *  RadiologyServiceStub java implementation
-        */
+public class RadiologyServiceStub extends org.apache.axis2.client.Stub {
+	protected org.apache.axis2.description.AxisOperation[] _operations;
 
-        
-        public class RadiologyServiceStub extends org.apache.axis2.client.Stub
-        {
-        protected org.apache.axis2.description.AxisOperation[] _operations;
+	// hashmaps to keep the fault mapping
+	private java.util.HashMap faultExceptionNameMap = new java.util.HashMap();
+	private java.util.HashMap faultExceptionClassNameMap = new java.util.HashMap();
+	private java.util.HashMap faultMessageMap = new java.util.HashMap();
 
-        //hashmaps to keep the fault mapping
-        private java.util.HashMap faultExceptionNameMap = new java.util.HashMap();
-        private java.util.HashMap faultExceptionClassNameMap = new java.util.HashMap();
-        private java.util.HashMap faultMessageMap = new java.util.HashMap();
+	private static int counter = 0;
 
-        private static int counter = 0;
+	private static synchronized java.lang.String getUniqueSuffix() {
+		// reset the counter if it is greater than 99999
+		if (counter > 99999) {
+			counter = 0;
+		}
+		counter = counter + 1;
+		return java.lang.Long.toString(java.lang.System.currentTimeMillis())
+				+ "_" + counter;
+	}
 
-        private static synchronized java.lang.String getUniqueSuffix(){
-            // reset the counter if it is greater than 99999
-            if (counter > 99999){
-                counter = 0;
-            }
-            counter = counter + 1; 
-            return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + counter;
-        }
+	private void populateAxisService() throws org.apache.axis2.AxisFault {
 
-    
-    private void populateAxisService() throws org.apache.axis2.AxisFault {
+		// creating the Service with a unique name
+		_service = new org.apache.axis2.description.AxisService(
+				"RadiologyService" + getUniqueSuffix());
+		addAnonymousOperations();
 
-     //creating the Service with a unique name
-     _service = new org.apache.axis2.description.AxisService("RadiologyService" + getUniqueSuffix());
-     addAnonymousOperations();
+		// creating the operations
+		org.apache.axis2.description.AxisOperation __operation;
 
-        //creating the operations
-        org.apache.axis2.description.AxisOperation __operation;
+		_operations = new org.apache.axis2.description.AxisOperation[4];
 
-        _operations = new org.apache.axis2.description.AxisOperation[4];
-        
-                   __operation = new org.apache.axis2.description.OutInAxisOperation();
-                
+		__operation = new org.apache.axis2.description.OutInAxisOperation();
 
-            __operation.setName(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/", "requestAppointment"));
-	    _service.addOperation(__operation);
-	    
+		__operation.setName(new javax.xml.namespace.QName(
+				"http://www.PAHospital.org/RadiologyService/",
+				"requestAppointment"));
+		_service.addOperation(__operation);
 
-	    
-	    
-            _operations[0]=__operation;
-            
-        
-                   __operation = new org.apache.axis2.description.OutInAxisOperation();
-                
+		_operations[0] = __operation;
 
-            __operation.setName(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/", "getOrderStatus"));
-	    _service.addOperation(__operation);
-	    
+		__operation = new org.apache.axis2.description.OutInAxisOperation();
 
-	    
-	    
-            _operations[1]=__operation;
-            
-        
-                    __operation = new org.apache.axis2.description.OutOnlyAxisOperation();
-                
+		__operation
+				.setName(new javax.xml.namespace.QName(
+						"http://www.PAHospital.org/RadiologyService/",
+						"getOrderStatus"));
+		_service.addOperation(__operation);
 
-            __operation.setName(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/", "makePayment"));
-	    _service.addOperation(__operation);
-	    
+		_operations[1] = __operation;
 
-	    
-	    
-            _operations[2]=__operation;
-            
-        
-                   __operation = new org.apache.axis2.description.OutInAxisOperation();
-                
+		__operation = new org.apache.axis2.description.OutOnlyAxisOperation();
 
-            __operation.setName(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/", "orderRadiologyExamination"));
-	    _service.addOperation(__operation);
-	    
+		__operation.setName(new javax.xml.namespace.QName(
+				"http://www.PAHospital.org/RadiologyService/", "makePayment"));
+		_service.addOperation(__operation);
 
-	    
-	    
-            _operations[3]=__operation;
-            
-        
-        }
+		_operations[2] = __operation;
 
-    //populates the faults
-    private void populateFaults(){
-         
+		__operation = new org.apache.axis2.description.OutInAxisOperation();
 
+		__operation.setName(new javax.xml.namespace.QName(
+				"http://www.PAHospital.org/RadiologyService/",
+				"orderRadiologyExamination"));
+		_service.addOperation(__operation);
 
-    }
+		_operations[3] = __operation;
 
-    /**
-      *Constructor that takes in a configContext
-      */
+	}
 
-    public RadiologyServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext,
-       java.lang.String targetEndpoint)
-       throws org.apache.axis2.AxisFault {
-         this(configurationContext,targetEndpoint,false);
-   }
+	// populates the faults
+	private void populateFaults() {
 
+	}
 
-   /**
-     * Constructor that takes in a configContext  and useseperate listner
-     */
-   public RadiologyServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext,
-        java.lang.String targetEndpoint, boolean useSeparateListener)
-        throws org.apache.axis2.AxisFault {
-         //To populate AxisService
-         populateAxisService();
-         populateFaults();
+	/**
+	 * Constructor that takes in a configContext
+	 */
 
-        _serviceClient = new org.apache.axis2.client.ServiceClient(configurationContext,_service);
-        
-	
-        _serviceClient.getOptions().setTo(new org.apache.axis2.addressing.EndpointReference(
-                targetEndpoint));
-        _serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
-        
-    
-    }
+	public RadiologyServiceStub(
+			org.apache.axis2.context.ConfigurationContext configurationContext,
+			java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
+		this(configurationContext, targetEndpoint, false);
+	}
 
-    /**
-     * Default Constructor
-     */
-    public RadiologyServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
-        
-                    this(configurationContext,"http://www.PAHospital.org/RadiologyService" );
-                
-    }
+	/**
+	 * Constructor that takes in a configContext and useseperate listner
+	 */
+	public RadiologyServiceStub(
+			org.apache.axis2.context.ConfigurationContext configurationContext,
+			java.lang.String targetEndpoint, boolean useSeparateListener)
+			throws org.apache.axis2.AxisFault {
+		// To populate AxisService
+		populateAxisService();
+		populateFaults();
 
-    /**
-     * Default Constructor
-     */
-    public RadiologyServiceStub() throws org.apache.axis2.AxisFault {
-        
-                    this("http://www.PAHospital.org/RadiologyService" );
-                
-    }
+		_serviceClient = new org.apache.axis2.client.ServiceClient(
+				configurationContext, _service);
 
-    /**
-     * Constructor taking the target endpoint
-     */
-    public RadiologyServiceStub(java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(null,targetEndpoint);
-    }
+		_serviceClient.getOptions().setTo(
+				new org.apache.axis2.addressing.EndpointReference(
+						targetEndpoint));
+		_serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
 
+	}
 
+	/**
+	 * Default Constructor
+	 */
+	public RadiologyServiceStub(
+			org.apache.axis2.context.ConfigurationContext configurationContext)
+			throws org.apache.axis2.AxisFault {
 
-        
-                    /**
-                     * Auto generated method signature
-                     * 
-                     * @see org.pahospital.www.radiologyservice.server.RadiologyService#requestAppointment
-                     * @param appointment51
-                    
-                     */
+		this(configurationContext, "http://www.PAHospital.org/RadiologyService");
 
-                    
+	}
 
-                            public  org.pahospital.www.radiologyservice.Appointment requestAppointment(
+	/**
+	 * Default Constructor
+	 */
+	public RadiologyServiceStub() throws org.apache.axis2.AxisFault {
 
-                            org.pahospital.www.radiologyservice.Appointment appointment51)
-                        
+		this("http://www.PAHospital.org/RadiologyService");
 
-                    throws java.rmi.RemoteException
-                    
-                    {
-              org.apache.axis2.context.MessageContext _messageContext = null;
-              try{
-               org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[0].getName());
-              _operationClient.getOptions().setAction("http://www.PAHospital.org/RadiologyService/RequestAppointment");
-              _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+	}
 
-              
-              
-                  addPropertyToOperationClient(_operationClient,org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,"&");
-              
+	/**
+	 * Constructor taking the target endpoint
+	 */
+	public RadiologyServiceStub(java.lang.String targetEndpoint)
+			throws org.apache.axis2.AxisFault {
+		this(null, targetEndpoint);
+	}
 
-              // create a message context
-              _messageContext = new org.apache.axis2.context.MessageContext();
+	/**
+	 * Auto generated method signature
+	 * 
+	 * @see org.pahospital.www.radiologyservice.server.RadiologyService#requestAppointment
+	 * @param appointment51
+	 */
 
-              
+	public org.pahospital.www.radiologyservice.Appointment requestAppointment(
 
-              // create SOAP envelope with that payload
-              org.apache.axiom.soap.SOAPEnvelope env = null;
-                    
-                                                    
-                                                    env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
-                                                    appointment51,
-                                                    optimizeContent(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "requestAppointment")), new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "requestAppointment"));
-                                                
-        //adding SOAP soap_headers
-         _serviceClient.addHeadersToEnvelope(env);
-        // set the message context with that soap envelope
-        _messageContext.setEnvelope(env);
+	org.pahospital.www.radiologyservice.Appointment appointment51)
 
-        // add the message contxt to the operation client
-        _operationClient.addMessageContext(_messageContext);
+	throws java.rmi.RemoteException
 
-        //execute the operation client
-        _operationClient.execute(true);
+	{
+		org.apache.axis2.context.MessageContext _messageContext = null;
+		try {
+			org.apache.axis2.client.OperationClient _operationClient = _serviceClient
+					.createClient(_operations[0].getName());
+			_operationClient
+					.getOptions()
+					.setAction(
+							"http://www.PAHospital.org/RadiologyService/RequestAppointment");
+			_operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(
+					true);
 
-         
-               org.apache.axis2.context.MessageContext _returnMessageContext = _operationClient.getMessageContext(
-                                           org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE);
-                org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
-                
-                
-                                java.lang.Object object = fromOM(
-                                             _returnEnv.getBody().getFirstElement() ,
-                                             org.pahospital.www.radiologyservice.Appointment.class,
-                                              getEnvelopeNamespaces(_returnEnv));
+			addPropertyToOperationClient(
+					_operationClient,
+					org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+					"&");
 
-                               
-                                        return (org.pahospital.www.radiologyservice.Appointment)object;
-                                   
-         }catch(org.apache.axis2.AxisFault f){
+			// create a message context
+			_messageContext = new org.apache.axis2.context.MessageContext();
 
-            org.apache.axiom.om.OMElement faultElt = f.getDetail();
-            if (faultElt!=null){
-                if (faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"RequestAppointment"))){
-                    //make the fault by reflection
-                    try{
-                        java.lang.String exceptionClassName = (java.lang.String)faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"RequestAppointment"));
-                        java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
-                        java.lang.Exception ex = (java.lang.Exception) exceptionClass.newInstance();
-                        //message class
-                        java.lang.String messageClassName = (java.lang.String)faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"RequestAppointment"));
-                        java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
-                        java.lang.Object messageObject = fromOM(faultElt,messageClass,null);
-                        java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                   new java.lang.Class[]{messageClass});
-                        m.invoke(ex,new java.lang.Object[]{messageObject});
-                        
+			// create SOAP envelope with that payload
+			org.apache.axiom.soap.SOAPEnvelope env = null;
 
-                        throw new java.rmi.RemoteException(ex.getMessage(), ex);
-                    }catch(java.lang.ClassCastException e){
-                       // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.ClassNotFoundException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }catch (java.lang.NoSuchMethodException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.reflect.InvocationTargetException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }  catch (java.lang.IllegalAccessException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }   catch (java.lang.InstantiationException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }
-                }else{
-                    throw f;
-                }
-            }else{
-                throw f;
-            }
-            } finally {
-                if (_messageContext.getTransportOut() != null) {
-                      _messageContext.getTransportOut().getSender().cleanup(_messageContext);
-                }
-            }
-        }
-            
-                /**
-                * Auto generated method signature for Asynchronous Invocations
-                * 
-                * @see org.pahospital.www.radiologyservice.server.RadiologyService#startrequestAppointment
-                    * @param appointment51
-                
-                */
-                public  void startrequestAppointment(
+			env = toEnvelope(getFactory(_operationClient.getOptions()
+					.getSoapVersionURI()), appointment51,
+					optimizeContent(new javax.xml.namespace.QName(
+							"http://www.PAHospital.org/RadiologyService/",
+							"requestAppointment")),
+					new javax.xml.namespace.QName(
+							"http://www.PAHospital.org/RadiologyService/",
+							"requestAppointment"));
 
-                 org.pahospital.www.radiologyservice.Appointment appointment51,
+			// adding SOAP soap_headers
+			_serviceClient.addHeadersToEnvelope(env);
+			// set the message context with that soap envelope
+			_messageContext.setEnvelope(env);
 
-                  final org.pahospital.www.radiologyservice.server.RadiologyServiceCallbackHandler callback)
+			// add the message contxt to the operation client
+			_operationClient.addMessageContext(_messageContext);
 
-                throws java.rmi.RemoteException{
+			// execute the operation client
+			_operationClient.execute(true);
 
-              org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[0].getName());
-             _operationClient.getOptions().setAction("http://www.PAHospital.org/RadiologyService/RequestAppointment");
-             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+			org.apache.axis2.context.MessageContext _returnMessageContext = _operationClient
+					.getMessageContext(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE);
+			org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext
+					.getEnvelope();
 
-              
-              
-                  addPropertyToOperationClient(_operationClient,org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,"&");
-              
+			java.lang.Object object = fromOM(_returnEnv.getBody()
+					.getFirstElement(),
+					org.pahospital.www.radiologyservice.Appointment.class,
+					getEnvelopeNamespaces(_returnEnv));
 
+			return (org.pahospital.www.radiologyservice.Appointment) object;
 
-              // create SOAP envelope with that payload
-              org.apache.axiom.soap.SOAPEnvelope env=null;
-              final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
+		} catch (org.apache.axis2.AxisFault f) {
 
-                    
-                                    //Style is Doc.
-                                    
-                                                    
-                                                    env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
-                                                    appointment51,
-                                                    optimizeContent(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "requestAppointment")), new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "requestAppointment"));
-                                                
-        // adding SOAP soap_headers
-         _serviceClient.addHeadersToEnvelope(env);
-        // create message context with that soap envelope
-        _messageContext.setEnvelope(env);
+			org.apache.axiom.om.OMElement faultElt = f.getDetail();
+			if (faultElt != null) {
+				if (faultExceptionNameMap
+						.containsKey(new org.apache.axis2.client.FaultMapKey(
+								faultElt.getQName(), "RequestAppointment"))) {
+					// make the fault by reflection
+					try {
+						java.lang.String exceptionClassName = (java.lang.String) faultExceptionClassNameMap
+								.get(new org.apache.axis2.client.FaultMapKey(
+										faultElt.getQName(),
+										"RequestAppointment"));
+						java.lang.Class exceptionClass = java.lang.Class
+								.forName(exceptionClassName);
+						java.lang.Exception ex = (java.lang.Exception) exceptionClass
+								.newInstance();
+						// message class
+						java.lang.String messageClassName = (java.lang.String) faultMessageMap
+								.get(new org.apache.axis2.client.FaultMapKey(
+										faultElt.getQName(),
+										"RequestAppointment"));
+						java.lang.Class messageClass = java.lang.Class
+								.forName(messageClassName);
+						java.lang.Object messageObject = fromOM(faultElt,
+								messageClass, null);
+						java.lang.reflect.Method m = exceptionClass.getMethod(
+								"setFaultMessage",
+								new java.lang.Class[] { messageClass });
+						m.invoke(ex, new java.lang.Object[] { messageObject });
 
-        // add the message context to the operation client
-        _operationClient.addMessageContext(_messageContext);
+						throw new java.rmi.RemoteException(ex.getMessage(), ex);
+					} catch (java.lang.ClassCastException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.ClassNotFoundException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.NoSuchMethodException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.reflect.InvocationTargetException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.IllegalAccessException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.InstantiationException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					}
+				} else {
+					throw f;
+				}
+			} else {
+				throw f;
+			}
+		} finally {
+			if (_messageContext.getTransportOut() != null) {
+				_messageContext.getTransportOut().getSender()
+						.cleanup(_messageContext);
+			}
+		}
+	}
 
+	/**
+	 * Auto generated method signature for Asynchronous Invocations
+	 * 
+	 * @see org.pahospital.www.radiologyservice.server.RadiologyService#startrequestAppointment
+	 * @param appointment51
+	 */
+	public void startrequestAppointment(
 
-                    
-                        _operationClient.setCallback(new org.apache.axis2.client.async.AxisCallback() {
-                            public void onMessage(org.apache.axis2.context.MessageContext resultContext) {
-                            try {
-                                org.apache.axiom.soap.SOAPEnvelope resultEnv = resultContext.getEnvelope();
-                                
-                                        java.lang.Object object = fromOM(resultEnv.getBody().getFirstElement(),
-                                                                         org.pahospital.www.radiologyservice.Appointment.class,
-                                                                         getEnvelopeNamespaces(resultEnv));
-                                        callback.receiveResultrequestAppointment(
-                                        (org.pahospital.www.radiologyservice.Appointment)object);
-                                        
-                            } catch (org.apache.axis2.AxisFault e) {
-                                callback.receiveErrorrequestAppointment(e);
-                            }
-                            }
+			org.pahospital.www.radiologyservice.Appointment appointment51,
 
-                            public void onError(java.lang.Exception error) {
-								if (error instanceof org.apache.axis2.AxisFault) {
-									org.apache.axis2.AxisFault f = (org.apache.axis2.AxisFault) error;
-									org.apache.axiom.om.OMElement faultElt = f.getDetail();
-									if (faultElt!=null){
-										if (faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"RequestAppointment"))){
-											//make the fault by reflection
-											try{
-													java.lang.String exceptionClassName = (java.lang.String)faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"RequestAppointment"));
-													java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
-													java.lang.Exception ex = (java.lang.Exception) exceptionClass.newInstance();
-													//message class
-													java.lang.String messageClassName = (java.lang.String)faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"RequestAppointment"));
-														java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
-													java.lang.Object messageObject = fromOM(faultElt,messageClass,null);
-													java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-															new java.lang.Class[]{messageClass});
-													m.invoke(ex,new java.lang.Object[]{messageObject});
-													
-					
-										            callback.receiveErrorrequestAppointment(new java.rmi.RemoteException(ex.getMessage(), ex));
-                                            } catch(java.lang.ClassCastException e){
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorrequestAppointment(f);
-                                            } catch (java.lang.ClassNotFoundException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorrequestAppointment(f);
-                                            } catch (java.lang.NoSuchMethodException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorrequestAppointment(f);
-                                            } catch (java.lang.reflect.InvocationTargetException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorrequestAppointment(f);
-                                            } catch (java.lang.IllegalAccessException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorrequestAppointment(f);
-                                            } catch (java.lang.InstantiationException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorrequestAppointment(f);
-                                            } catch (org.apache.axis2.AxisFault e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorrequestAppointment(f);
-                                            }
-									    } else {
-										    callback.receiveErrorrequestAppointment(f);
-									    }
-									} else {
-									    callback.receiveErrorrequestAppointment(f);
+			final org.pahospital.www.radiologyservice.server.RadiologyServiceCallbackHandler callback)
+
+	throws java.rmi.RemoteException {
+
+		org.apache.axis2.client.OperationClient _operationClient = _serviceClient
+				.createClient(_operations[0].getName());
+		_operationClient
+				.getOptions()
+				.setAction(
+						"http://www.PAHospital.org/RadiologyService/RequestAppointment");
+		_operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+
+		addPropertyToOperationClient(
+				_operationClient,
+				org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+				"&");
+
+		// create SOAP envelope with that payload
+		org.apache.axiom.soap.SOAPEnvelope env = null;
+		final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
+
+		// Style is Doc.
+
+		env = toEnvelope(getFactory(_operationClient.getOptions()
+				.getSoapVersionURI()), appointment51,
+				optimizeContent(new javax.xml.namespace.QName(
+						"http://www.PAHospital.org/RadiologyService/",
+						"requestAppointment")), new javax.xml.namespace.QName(
+						"http://www.PAHospital.org/RadiologyService/",
+						"requestAppointment"));
+
+		// adding SOAP soap_headers
+		_serviceClient.addHeadersToEnvelope(env);
+		// create message context with that soap envelope
+		_messageContext.setEnvelope(env);
+
+		// add the message context to the operation client
+		_operationClient.addMessageContext(_messageContext);
+
+		_operationClient
+				.setCallback(new org.apache.axis2.client.async.AxisCallback() {
+					public void onMessage(
+							org.apache.axis2.context.MessageContext resultContext) {
+						try {
+							org.apache.axiom.soap.SOAPEnvelope resultEnv = resultContext
+									.getEnvelope();
+
+							java.lang.Object object = fromOM(
+									resultEnv.getBody().getFirstElement(),
+									org.pahospital.www.radiologyservice.Appointment.class,
+									getEnvelopeNamespaces(resultEnv));
+							callback.receiveResultrequestAppointment((org.pahospital.www.radiologyservice.Appointment) object);
+
+						} catch (org.apache.axis2.AxisFault e) {
+							callback.receiveErrorrequestAppointment(e);
+						}
+					}
+
+					public void onError(java.lang.Exception error) {
+						if (error instanceof org.apache.axis2.AxisFault) {
+							org.apache.axis2.AxisFault f = (org.apache.axis2.AxisFault) error;
+							org.apache.axiom.om.OMElement faultElt = f
+									.getDetail();
+							if (faultElt != null) {
+								if (faultExceptionNameMap
+										.containsKey(new org.apache.axis2.client.FaultMapKey(
+												faultElt.getQName(),
+												"RequestAppointment"))) {
+									// make the fault by reflection
+									try {
+										java.lang.String exceptionClassName = (java.lang.String) faultExceptionClassNameMap
+												.get(new org.apache.axis2.client.FaultMapKey(
+														faultElt.getQName(),
+														"RequestAppointment"));
+										java.lang.Class exceptionClass = java.lang.Class
+												.forName(exceptionClassName);
+										java.lang.Exception ex = (java.lang.Exception) exceptionClass
+												.newInstance();
+										// message class
+										java.lang.String messageClassName = (java.lang.String) faultMessageMap
+												.get(new org.apache.axis2.client.FaultMapKey(
+														faultElt.getQName(),
+														"RequestAppointment"));
+										java.lang.Class messageClass = java.lang.Class
+												.forName(messageClassName);
+										java.lang.Object messageObject = fromOM(
+												faultElt, messageClass, null);
+										java.lang.reflect.Method m = exceptionClass
+												.getMethod(
+														"setFaultMessage",
+														new java.lang.Class[] { messageClass });
+										m.invoke(
+												ex,
+												new java.lang.Object[] { messageObject });
+
+										callback.receiveErrorrequestAppointment(new java.rmi.RemoteException(
+												ex.getMessage(), ex));
+									} catch (java.lang.ClassCastException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorrequestAppointment(f);
+									} catch (java.lang.ClassNotFoundException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorrequestAppointment(f);
+									} catch (java.lang.NoSuchMethodException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorrequestAppointment(f);
+									} catch (java.lang.reflect.InvocationTargetException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorrequestAppointment(f);
+									} catch (java.lang.IllegalAccessException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorrequestAppointment(f);
+									} catch (java.lang.InstantiationException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorrequestAppointment(f);
+									} catch (org.apache.axis2.AxisFault e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorrequestAppointment(f);
 									}
 								} else {
-								    callback.receiveErrorrequestAppointment(error);
+									callback.receiveErrorrequestAppointment(f);
 								}
-                            }
+							} else {
+								callback.receiveErrorrequestAppointment(f);
+							}
+						} else {
+							callback.receiveErrorrequestAppointment(error);
+						}
+					}
 
-                            public void onFault(org.apache.axis2.context.MessageContext faultContext) {
-                                org.apache.axis2.AxisFault fault = org.apache.axis2.util.Utils.getInboundFaultFromMessageContext(faultContext);
-                                onError(fault);
-                            }
+					public void onFault(
+							org.apache.axis2.context.MessageContext faultContext) {
+						org.apache.axis2.AxisFault fault = org.apache.axis2.util.Utils
+								.getInboundFaultFromMessageContext(faultContext);
+						onError(fault);
+					}
 
-                            public void onComplete() {
-                                try {
-                                    _messageContext.getTransportOut().getSender().cleanup(_messageContext);
-                                } catch (org.apache.axis2.AxisFault axisFault) {
-                                    callback.receiveErrorrequestAppointment(axisFault);
-                                }
-                            }
-                });
-                        
+					public void onComplete() {
+						try {
+							_messageContext.getTransportOut().getSender()
+									.cleanup(_messageContext);
+						} catch (org.apache.axis2.AxisFault axisFault) {
+							callback.receiveErrorrequestAppointment(axisFault);
+						}
+					}
+				});
 
-          org.apache.axis2.util.CallbackReceiver _callbackReceiver = null;
-        if ( _operations[0].getMessageReceiver()==null &&  _operationClient.getOptions().isUseSeparateListener()) {
-           _callbackReceiver = new org.apache.axis2.util.CallbackReceiver();
-          _operations[0].setMessageReceiver(
-                    _callbackReceiver);
-        }
+		org.apache.axis2.util.CallbackReceiver _callbackReceiver = null;
+		if (_operations[0].getMessageReceiver() == null
+				&& _operationClient.getOptions().isUseSeparateListener()) {
+			_callbackReceiver = new org.apache.axis2.util.CallbackReceiver();
+			_operations[0].setMessageReceiver(_callbackReceiver);
+		}
 
-           //execute the operation client
-           _operationClient.execute(false);
+		// execute the operation client
+		_operationClient.execute(false);
 
-                    }
-                
-                    /**
-                     * Auto generated method signature
-                     * 
-                     * @see org.pahospital.www.radiologyservice.server.RadiologyService#getOrderStatus
-                     * @param radiologyOrderID53
-                    
-                     */
+	}
 
-                    
+	/**
+	 * Auto generated method signature
+	 * 
+	 * @see org.pahospital.www.radiologyservice.server.RadiologyService#getOrderStatus
+	 * @param radiologyOrderID53
+	 */
 
-                            public  org.pahospital.www.radiologyservice.OrderStatus getOrderStatus(
+	public org.pahospital.www.radiologyservice.OrderStatus getOrderStatus(
 
-                            org.pahospital.www.radiologyservice.RadiologyOrderID radiologyOrderID53)
-                        
+	org.pahospital.www.radiologyservice.RadiologyOrderID radiologyOrderID53)
 
-                    throws java.rmi.RemoteException
-                    
-                    {
-              org.apache.axis2.context.MessageContext _messageContext = null;
-              try{
-               org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[1].getName());
-              _operationClient.getOptions().setAction("http://www.PAHospital.org/RadiologyService/GetOrderStatus");
-              _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+	throws java.rmi.RemoteException
 
-              
-              
-                  addPropertyToOperationClient(_operationClient,org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,"&");
-              
+	{
+		org.apache.axis2.context.MessageContext _messageContext = null;
+		try {
+			org.apache.axis2.client.OperationClient _operationClient = _serviceClient
+					.createClient(_operations[1].getName());
+			_operationClient
+					.getOptions()
+					.setAction(
+							"http://www.PAHospital.org/RadiologyService/GetOrderStatus");
+			_operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(
+					true);
 
-              // create a message context
-              _messageContext = new org.apache.axis2.context.MessageContext();
+			addPropertyToOperationClient(
+					_operationClient,
+					org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+					"&");
 
-              
+			// create a message context
+			_messageContext = new org.apache.axis2.context.MessageContext();
 
-              // create SOAP envelope with that payload
-              org.apache.axiom.soap.SOAPEnvelope env = null;
-                    
-                                                    
-                                                    env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
-                                                    radiologyOrderID53,
-                                                    optimizeContent(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "getOrderStatus")), new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "getOrderStatus"));
-                                                
-        //adding SOAP soap_headers
-         _serviceClient.addHeadersToEnvelope(env);
-        // set the message context with that soap envelope
-        _messageContext.setEnvelope(env);
+			// create SOAP envelope with that payload
+			org.apache.axiom.soap.SOAPEnvelope env = null;
 
-        // add the message contxt to the operation client
-        _operationClient.addMessageContext(_messageContext);
+			env = toEnvelope(getFactory(_operationClient.getOptions()
+					.getSoapVersionURI()), radiologyOrderID53,
+					optimizeContent(new javax.xml.namespace.QName(
+							"http://www.PAHospital.org/RadiologyService/",
+							"getOrderStatus")), new javax.xml.namespace.QName(
+							"http://www.PAHospital.org/RadiologyService/",
+							"getOrderStatus"));
 
-        //execute the operation client
-        _operationClient.execute(true);
+			// adding SOAP soap_headers
+			_serviceClient.addHeadersToEnvelope(env);
+			// set the message context with that soap envelope
+			_messageContext.setEnvelope(env);
 
-         
-               org.apache.axis2.context.MessageContext _returnMessageContext = _operationClient.getMessageContext(
-                                           org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE);
-                org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
-                
-                
-                                java.lang.Object object = fromOM(
-                                             _returnEnv.getBody().getFirstElement() ,
-                                             org.pahospital.www.radiologyservice.OrderStatus.class,
-                                              getEnvelopeNamespaces(_returnEnv));
+			// add the message contxt to the operation client
+			_operationClient.addMessageContext(_messageContext);
 
-                               
-                                        return (org.pahospital.www.radiologyservice.OrderStatus)object;
-                                   
-         }catch(org.apache.axis2.AxisFault f){
+			// execute the operation client
+			_operationClient.execute(true);
 
-            org.apache.axiom.om.OMElement faultElt = f.getDetail();
-            if (faultElt!=null){
-                if (faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"GetOrderStatus"))){
-                    //make the fault by reflection
-                    try{
-                        java.lang.String exceptionClassName = (java.lang.String)faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"GetOrderStatus"));
-                        java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
-                        java.lang.Exception ex = (java.lang.Exception) exceptionClass.newInstance();
-                        //message class
-                        java.lang.String messageClassName = (java.lang.String)faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"GetOrderStatus"));
-                        java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
-                        java.lang.Object messageObject = fromOM(faultElt,messageClass,null);
-                        java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                   new java.lang.Class[]{messageClass});
-                        m.invoke(ex,new java.lang.Object[]{messageObject});
-                        
+			org.apache.axis2.context.MessageContext _returnMessageContext = _operationClient
+					.getMessageContext(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE);
+			org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext
+					.getEnvelope();
 
-                        throw new java.rmi.RemoteException(ex.getMessage(), ex);
-                    }catch(java.lang.ClassCastException e){
-                       // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.ClassNotFoundException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }catch (java.lang.NoSuchMethodException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.reflect.InvocationTargetException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }  catch (java.lang.IllegalAccessException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }   catch (java.lang.InstantiationException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }
-                }else{
-                    throw f;
-                }
-            }else{
-                throw f;
-            }
-            } finally {
-                if (_messageContext.getTransportOut() != null) {
-                      _messageContext.getTransportOut().getSender().cleanup(_messageContext);
-                }
-            }
-        }
-            
-                /**
-                * Auto generated method signature for Asynchronous Invocations
-                * 
-                * @see org.pahospital.www.radiologyservice.server.RadiologyService#startgetOrderStatus
-                    * @param radiologyOrderID53
-                
-                */
-                public  void startgetOrderStatus(
+			java.lang.Object object = fromOM(_returnEnv.getBody()
+					.getFirstElement(),
+					org.pahospital.www.radiologyservice.OrderStatus.class,
+					getEnvelopeNamespaces(_returnEnv));
 
-                 org.pahospital.www.radiologyservice.RadiologyOrderID radiologyOrderID53,
+			return (org.pahospital.www.radiologyservice.OrderStatus) object;
 
-                  final org.pahospital.www.radiologyservice.server.RadiologyServiceCallbackHandler callback)
+		} catch (org.apache.axis2.AxisFault f) {
 
-                throws java.rmi.RemoteException{
+			org.apache.axiom.om.OMElement faultElt = f.getDetail();
+			if (faultElt != null) {
+				if (faultExceptionNameMap
+						.containsKey(new org.apache.axis2.client.FaultMapKey(
+								faultElt.getQName(), "GetOrderStatus"))) {
+					// make the fault by reflection
+					try {
+						java.lang.String exceptionClassName = (java.lang.String) faultExceptionClassNameMap
+								.get(new org.apache.axis2.client.FaultMapKey(
+										faultElt.getQName(), "GetOrderStatus"));
+						java.lang.Class exceptionClass = java.lang.Class
+								.forName(exceptionClassName);
+						java.lang.Exception ex = (java.lang.Exception) exceptionClass
+								.newInstance();
+						// message class
+						java.lang.String messageClassName = (java.lang.String) faultMessageMap
+								.get(new org.apache.axis2.client.FaultMapKey(
+										faultElt.getQName(), "GetOrderStatus"));
+						java.lang.Class messageClass = java.lang.Class
+								.forName(messageClassName);
+						java.lang.Object messageObject = fromOM(faultElt,
+								messageClass, null);
+						java.lang.reflect.Method m = exceptionClass.getMethod(
+								"setFaultMessage",
+								new java.lang.Class[] { messageClass });
+						m.invoke(ex, new java.lang.Object[] { messageObject });
 
-              org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[1].getName());
-             _operationClient.getOptions().setAction("http://www.PAHospital.org/RadiologyService/GetOrderStatus");
-             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+						throw new java.rmi.RemoteException(ex.getMessage(), ex);
+					} catch (java.lang.ClassCastException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.ClassNotFoundException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.NoSuchMethodException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.reflect.InvocationTargetException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.IllegalAccessException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.InstantiationException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					}
+				} else {
+					throw f;
+				}
+			} else {
+				throw f;
+			}
+		} finally {
+			if (_messageContext.getTransportOut() != null) {
+				_messageContext.getTransportOut().getSender()
+						.cleanup(_messageContext);
+			}
+		}
+	}
 
-              
-              
-                  addPropertyToOperationClient(_operationClient,org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,"&");
-              
+	/**
+	 * Auto generated method signature for Asynchronous Invocations
+	 * 
+	 * @see org.pahospital.www.radiologyservice.server.RadiologyService#startgetOrderStatus
+	 * @param radiologyOrderID53
+	 */
+	public void startgetOrderStatus(
 
+			org.pahospital.www.radiologyservice.RadiologyOrderID radiologyOrderID53,
 
-              // create SOAP envelope with that payload
-              org.apache.axiom.soap.SOAPEnvelope env=null;
-              final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
+			final org.pahospital.www.radiologyservice.server.RadiologyServiceCallbackHandler callback)
 
-                    
-                                    //Style is Doc.
-                                    
-                                                    
-                                                    env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
-                                                    radiologyOrderID53,
-                                                    optimizeContent(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "getOrderStatus")), new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "getOrderStatus"));
-                                                
-        // adding SOAP soap_headers
-         _serviceClient.addHeadersToEnvelope(env);
-        // create message context with that soap envelope
-        _messageContext.setEnvelope(env);
+	throws java.rmi.RemoteException {
 
-        // add the message context to the operation client
-        _operationClient.addMessageContext(_messageContext);
+		org.apache.axis2.client.OperationClient _operationClient = _serviceClient
+				.createClient(_operations[1].getName());
+		_operationClient.getOptions().setAction(
+				"http://www.PAHospital.org/RadiologyService/GetOrderStatus");
+		_operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
+		addPropertyToOperationClient(
+				_operationClient,
+				org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+				"&");
 
-                    
-                        _operationClient.setCallback(new org.apache.axis2.client.async.AxisCallback() {
-                            public void onMessage(org.apache.axis2.context.MessageContext resultContext) {
-                            try {
-                                org.apache.axiom.soap.SOAPEnvelope resultEnv = resultContext.getEnvelope();
-                                
-                                        java.lang.Object object = fromOM(resultEnv.getBody().getFirstElement(),
-                                                                         org.pahospital.www.radiologyservice.OrderStatus.class,
-                                                                         getEnvelopeNamespaces(resultEnv));
-                                        callback.receiveResultgetOrderStatus(
-                                        (org.pahospital.www.radiologyservice.OrderStatus)object);
-                                        
-                            } catch (org.apache.axis2.AxisFault e) {
-                                callback.receiveErrorgetOrderStatus(e);
-                            }
-                            }
+		// create SOAP envelope with that payload
+		org.apache.axiom.soap.SOAPEnvelope env = null;
+		final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
 
-                            public void onError(java.lang.Exception error) {
-								if (error instanceof org.apache.axis2.AxisFault) {
-									org.apache.axis2.AxisFault f = (org.apache.axis2.AxisFault) error;
-									org.apache.axiom.om.OMElement faultElt = f.getDetail();
-									if (faultElt!=null){
-										if (faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"GetOrderStatus"))){
-											//make the fault by reflection
-											try{
-													java.lang.String exceptionClassName = (java.lang.String)faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"GetOrderStatus"));
-													java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
-													java.lang.Exception ex = (java.lang.Exception) exceptionClass.newInstance();
-													//message class
-													java.lang.String messageClassName = (java.lang.String)faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"GetOrderStatus"));
-														java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
-													java.lang.Object messageObject = fromOM(faultElt,messageClass,null);
-													java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-															new java.lang.Class[]{messageClass});
-													m.invoke(ex,new java.lang.Object[]{messageObject});
-													
-					
-										            callback.receiveErrorgetOrderStatus(new java.rmi.RemoteException(ex.getMessage(), ex));
-                                            } catch(java.lang.ClassCastException e){
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorgetOrderStatus(f);
-                                            } catch (java.lang.ClassNotFoundException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorgetOrderStatus(f);
-                                            } catch (java.lang.NoSuchMethodException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorgetOrderStatus(f);
-                                            } catch (java.lang.reflect.InvocationTargetException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorgetOrderStatus(f);
-                                            } catch (java.lang.IllegalAccessException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorgetOrderStatus(f);
-                                            } catch (java.lang.InstantiationException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorgetOrderStatus(f);
-                                            } catch (org.apache.axis2.AxisFault e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrorgetOrderStatus(f);
-                                            }
-									    } else {
-										    callback.receiveErrorgetOrderStatus(f);
-									    }
-									} else {
-									    callback.receiveErrorgetOrderStatus(f);
+		// Style is Doc.
+
+		env = toEnvelope(getFactory(_operationClient.getOptions()
+				.getSoapVersionURI()), radiologyOrderID53,
+				optimizeContent(new javax.xml.namespace.QName(
+						"http://www.PAHospital.org/RadiologyService/",
+						"getOrderStatus")), new javax.xml.namespace.QName(
+						"http://www.PAHospital.org/RadiologyService/",
+						"getOrderStatus"));
+
+		// adding SOAP soap_headers
+		_serviceClient.addHeadersToEnvelope(env);
+		// create message context with that soap envelope
+		_messageContext.setEnvelope(env);
+
+		// add the message context to the operation client
+		_operationClient.addMessageContext(_messageContext);
+
+		_operationClient
+				.setCallback(new org.apache.axis2.client.async.AxisCallback() {
+					public void onMessage(
+							org.apache.axis2.context.MessageContext resultContext) {
+						try {
+							org.apache.axiom.soap.SOAPEnvelope resultEnv = resultContext
+									.getEnvelope();
+
+							java.lang.Object object = fromOM(
+									resultEnv.getBody().getFirstElement(),
+									org.pahospital.www.radiologyservice.OrderStatus.class,
+									getEnvelopeNamespaces(resultEnv));
+							callback.receiveResultgetOrderStatus((org.pahospital.www.radiologyservice.OrderStatus) object);
+
+						} catch (org.apache.axis2.AxisFault e) {
+							callback.receiveErrorgetOrderStatus(e);
+						}
+					}
+
+					public void onError(java.lang.Exception error) {
+						if (error instanceof org.apache.axis2.AxisFault) {
+							org.apache.axis2.AxisFault f = (org.apache.axis2.AxisFault) error;
+							org.apache.axiom.om.OMElement faultElt = f
+									.getDetail();
+							if (faultElt != null) {
+								if (faultExceptionNameMap
+										.containsKey(new org.apache.axis2.client.FaultMapKey(
+												faultElt.getQName(),
+												"GetOrderStatus"))) {
+									// make the fault by reflection
+									try {
+										java.lang.String exceptionClassName = (java.lang.String) faultExceptionClassNameMap
+												.get(new org.apache.axis2.client.FaultMapKey(
+														faultElt.getQName(),
+														"GetOrderStatus"));
+										java.lang.Class exceptionClass = java.lang.Class
+												.forName(exceptionClassName);
+										java.lang.Exception ex = (java.lang.Exception) exceptionClass
+												.newInstance();
+										// message class
+										java.lang.String messageClassName = (java.lang.String) faultMessageMap
+												.get(new org.apache.axis2.client.FaultMapKey(
+														faultElt.getQName(),
+														"GetOrderStatus"));
+										java.lang.Class messageClass = java.lang.Class
+												.forName(messageClassName);
+										java.lang.Object messageObject = fromOM(
+												faultElt, messageClass, null);
+										java.lang.reflect.Method m = exceptionClass
+												.getMethod(
+														"setFaultMessage",
+														new java.lang.Class[] { messageClass });
+										m.invoke(
+												ex,
+												new java.lang.Object[] { messageObject });
+
+										callback.receiveErrorgetOrderStatus(new java.rmi.RemoteException(
+												ex.getMessage(), ex));
+									} catch (java.lang.ClassCastException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorgetOrderStatus(f);
+									} catch (java.lang.ClassNotFoundException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorgetOrderStatus(f);
+									} catch (java.lang.NoSuchMethodException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorgetOrderStatus(f);
+									} catch (java.lang.reflect.InvocationTargetException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorgetOrderStatus(f);
+									} catch (java.lang.IllegalAccessException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorgetOrderStatus(f);
+									} catch (java.lang.InstantiationException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorgetOrderStatus(f);
+									} catch (org.apache.axis2.AxisFault e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrorgetOrderStatus(f);
 									}
 								} else {
-								    callback.receiveErrorgetOrderStatus(error);
+									callback.receiveErrorgetOrderStatus(f);
 								}
-                            }
+							} else {
+								callback.receiveErrorgetOrderStatus(f);
+							}
+						} else {
+							callback.receiveErrorgetOrderStatus(error);
+						}
+					}
 
-                            public void onFault(org.apache.axis2.context.MessageContext faultContext) {
-                                org.apache.axis2.AxisFault fault = org.apache.axis2.util.Utils.getInboundFaultFromMessageContext(faultContext);
-                                onError(fault);
-                            }
+					public void onFault(
+							org.apache.axis2.context.MessageContext faultContext) {
+						org.apache.axis2.AxisFault fault = org.apache.axis2.util.Utils
+								.getInboundFaultFromMessageContext(faultContext);
+						onError(fault);
+					}
 
-                            public void onComplete() {
-                                try {
-                                    _messageContext.getTransportOut().getSender().cleanup(_messageContext);
-                                } catch (org.apache.axis2.AxisFault axisFault) {
-                                    callback.receiveErrorgetOrderStatus(axisFault);
-                                }
-                            }
-                });
-                        
+					public void onComplete() {
+						try {
+							_messageContext.getTransportOut().getSender()
+									.cleanup(_messageContext);
+						} catch (org.apache.axis2.AxisFault axisFault) {
+							callback.receiveErrorgetOrderStatus(axisFault);
+						}
+					}
+				});
 
-          org.apache.axis2.util.CallbackReceiver _callbackReceiver = null;
-        if ( _operations[1].getMessageReceiver()==null &&  _operationClient.getOptions().isUseSeparateListener()) {
-           _callbackReceiver = new org.apache.axis2.util.CallbackReceiver();
-          _operations[1].setMessageReceiver(
-                    _callbackReceiver);
-        }
+		org.apache.axis2.util.CallbackReceiver _callbackReceiver = null;
+		if (_operations[1].getMessageReceiver() == null
+				&& _operationClient.getOptions().isUseSeparateListener()) {
+			_callbackReceiver = new org.apache.axis2.util.CallbackReceiver();
+			_operations[1].setMessageReceiver(_callbackReceiver);
+		}
 
-           //execute the operation client
-           _operationClient.execute(false);
+		// execute the operation client
+		_operationClient.execute(false);
 
-                    }
-                 
-                
-                /**
-                  * Auto generated method signature
-                  * 
-                  */
-                public void  makePayment(
-                 org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment radiologyOrderIDForPayment55
+	}
 
-                ) throws java.rmi.RemoteException
-                
-                
-                {
-                org.apache.axis2.context.MessageContext _messageContext = null;
+	/**
+	 * Auto generated method signature
+	 * 
+	 */
+	public void makePayment(
+			org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment radiologyOrderIDForPayment55
 
-                
-                org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[2].getName());
-                _operationClient.getOptions().setAction("http://www.PAHospital.org/RadiologyService/MakePayment");
-                _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+	) throws java.rmi.RemoteException
 
-                
-              
-                  addPropertyToOperationClient(_operationClient,org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,"&");
-              
-                org.apache.axiom.soap.SOAPEnvelope env = null;
-                 _messageContext = new org.apache.axis2.context.MessageContext();
+	{
+		org.apache.axis2.context.MessageContext _messageContext = null;
 
-                
-                                                    //Style is Doc.
-                                                    
-                                                                    
-                                                                    env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
-                                                                    radiologyOrderIDForPayment55,
-                                                                    optimizeContent(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                                    "makePayment")),new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                                    "makePayment"));
-                                                                
+		org.apache.axis2.client.OperationClient _operationClient = _serviceClient
+				.createClient(_operations[2].getName());
+		_operationClient.getOptions().setAction(
+				"http://www.PAHospital.org/RadiologyService/MakePayment");
+		_operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
-              //adding SOAP soap_headers
-         _serviceClient.addHeadersToEnvelope(env);
-                // create message context with that soap envelope
+		addPropertyToOperationClient(
+				_operationClient,
+				org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+				"&");
 
-            _messageContext.setEnvelope(env);
+		org.apache.axiom.soap.SOAPEnvelope env = null;
+		_messageContext = new org.apache.axis2.context.MessageContext();
 
-            // add the message contxt to the operation client
-            _operationClient.addMessageContext(_messageContext);
+		// Style is Doc.
 
-             _operationClient.execute(true);
+		env = toEnvelope(getFactory(_operationClient.getOptions()
+				.getSoapVersionURI()), radiologyOrderIDForPayment55,
+				optimizeContent(new javax.xml.namespace.QName(
+						"http://www.PAHospital.org/RadiologyService/",
+						"makePayment")), new javax.xml.namespace.QName(
+						"http://www.PAHospital.org/RadiologyService/",
+						"makePayment"));
 
-           
-              if (_messageContext.getTransportOut() != null) {
-                      _messageContext.getTransportOut().getSender().cleanup(_messageContext);
-              }
-           
-             return;
-           }
-            
-                    /**
-                     * Auto generated method signature
-                     * 
-                     * @see org.pahospital.www.radiologyservice.server.RadiologyService#orderRadiologyExamination
-                     * @param radiologyOrder56
-                    
-                     */
+		// adding SOAP soap_headers
+		_serviceClient.addHeadersToEnvelope(env);
+		// create message context with that soap envelope
 
-                    
+		_messageContext.setEnvelope(env);
 
-                            public  org.pahospital.www.radiologyservice.RadiologyOrderID orderRadiologyExamination(
+		// add the message contxt to the operation client
+		_operationClient.addMessageContext(_messageContext);
 
-                            org.pahospital.www.radiologyservice.RadiologyOrder radiologyOrder56)
-                        
+		_operationClient.execute(true);
 
-                    throws java.rmi.RemoteException
-                    
-                    {
-              org.apache.axis2.context.MessageContext _messageContext = null;
-              try{
-               org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[3].getName());
-              _operationClient.getOptions().setAction("http://www.PAHospital.org/RadiologyService/OrderRadiologyExamination");
-              _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+		if (_messageContext.getTransportOut() != null) {
+			_messageContext.getTransportOut().getSender()
+					.cleanup(_messageContext);
+		}
 
-              
-              
-                  addPropertyToOperationClient(_operationClient,org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,"&");
-              
+		return;
+	}
 
-              // create a message context
-              _messageContext = new org.apache.axis2.context.MessageContext();
+	/**
+	 * Auto generated method signature
+	 * 
+	 * @see org.pahospital.www.radiologyservice.server.RadiologyService#orderRadiologyExamination
+	 * @param radiologyOrder56
+	 */
 
-              
+	public org.pahospital.www.radiologyservice.RadiologyOrderID orderRadiologyExamination(
 
-              // create SOAP envelope with that payload
-              org.apache.axiom.soap.SOAPEnvelope env = null;
-                    
-                                                    
-                                                    env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
-                                                    radiologyOrder56,
-                                                    optimizeContent(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "orderRadiologyExamination")), new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "orderRadiologyExamination"));
-                                                
-        //adding SOAP soap_headers
-         _serviceClient.addHeadersToEnvelope(env);
-        // set the message context with that soap envelope
-        _messageContext.setEnvelope(env);
+	org.pahospital.www.radiologyservice.RadiologyOrder radiologyOrder56)
 
-        // add the message contxt to the operation client
-        _operationClient.addMessageContext(_messageContext);
+	throws java.rmi.RemoteException
 
-        //execute the operation client
-        _operationClient.execute(true);
+	{
+		org.apache.axis2.context.MessageContext _messageContext = null;
+		try {
+			org.apache.axis2.client.OperationClient _operationClient = _serviceClient
+					.createClient(_operations[3].getName());
+			_operationClient
+					.getOptions()
+					.setAction(
+							"http://www.PAHospital.org/RadiologyService/OrderRadiologyExamination");
+			_operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(
+					true);
 
-         
-               org.apache.axis2.context.MessageContext _returnMessageContext = _operationClient.getMessageContext(
-                                           org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE);
-                org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
-                
-                
-                                java.lang.Object object = fromOM(
-                                             _returnEnv.getBody().getFirstElement() ,
-                                             org.pahospital.www.radiologyservice.RadiologyOrderID.class,
-                                              getEnvelopeNamespaces(_returnEnv));
+			addPropertyToOperationClient(
+					_operationClient,
+					org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+					"&");
 
-                               
-                                        return (org.pahospital.www.radiologyservice.RadiologyOrderID)object;
-                                   
-         }catch(org.apache.axis2.AxisFault f){
+			// create a message context
+			_messageContext = new org.apache.axis2.context.MessageContext();
 
-            org.apache.axiom.om.OMElement faultElt = f.getDetail();
-            if (faultElt!=null){
-                if (faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"OrderRadiologyExamination"))){
-                    //make the fault by reflection
-                    try{
-                        java.lang.String exceptionClassName = (java.lang.String)faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"OrderRadiologyExamination"));
-                        java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
-                        java.lang.Exception ex = (java.lang.Exception) exceptionClass.newInstance();
-                        //message class
-                        java.lang.String messageClassName = (java.lang.String)faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"OrderRadiologyExamination"));
-                        java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
-                        java.lang.Object messageObject = fromOM(faultElt,messageClass,null);
-                        java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                   new java.lang.Class[]{messageClass});
-                        m.invoke(ex,new java.lang.Object[]{messageObject});
-                        
+			// create SOAP envelope with that payload
+			org.apache.axiom.soap.SOAPEnvelope env = null;
 
-                        throw new java.rmi.RemoteException(ex.getMessage(), ex);
-                    }catch(java.lang.ClassCastException e){
-                       // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.ClassNotFoundException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }catch (java.lang.NoSuchMethodException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    } catch (java.lang.reflect.InvocationTargetException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }  catch (java.lang.IllegalAccessException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }   catch (java.lang.InstantiationException e) {
-                        // we cannot intantiate the class - throw the original Axis fault
-                        throw f;
-                    }
-                }else{
-                    throw f;
-                }
-            }else{
-                throw f;
-            }
-            } finally {
-                if (_messageContext.getTransportOut() != null) {
-                      _messageContext.getTransportOut().getSender().cleanup(_messageContext);
-                }
-            }
-        }
-            
-                /**
-                * Auto generated method signature for Asynchronous Invocations
-                * 
-                * @see org.pahospital.www.radiologyservice.server.RadiologyService#startorderRadiologyExamination
-                    * @param radiologyOrder56
-                
-                */
-                public  void startorderRadiologyExamination(
+			env = toEnvelope(getFactory(_operationClient.getOptions()
+					.getSoapVersionURI()), radiologyOrder56,
+					optimizeContent(new javax.xml.namespace.QName(
+							"http://www.PAHospital.org/RadiologyService/",
+							"orderRadiologyExamination")),
+					new javax.xml.namespace.QName(
+							"http://www.PAHospital.org/RadiologyService/",
+							"orderRadiologyExamination"));
 
-                 org.pahospital.www.radiologyservice.RadiologyOrder radiologyOrder56,
+			// adding SOAP soap_headers
+			_serviceClient.addHeadersToEnvelope(env);
+			// set the message context with that soap envelope
+			_messageContext.setEnvelope(env);
 
-                  final org.pahospital.www.radiologyservice.server.RadiologyServiceCallbackHandler callback)
+			// add the message contxt to the operation client
+			_operationClient.addMessageContext(_messageContext);
 
-                throws java.rmi.RemoteException{
+			// execute the operation client
+			_operationClient.execute(true);
 
-              org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[3].getName());
-             _operationClient.getOptions().setAction("http://www.PAHospital.org/RadiologyService/OrderRadiologyExamination");
-             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+			org.apache.axis2.context.MessageContext _returnMessageContext = _operationClient
+					.getMessageContext(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE);
+			org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext
+					.getEnvelope();
 
-              
-              
-                  addPropertyToOperationClient(_operationClient,org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,"&");
-              
+			java.lang.Object object = fromOM(_returnEnv.getBody()
+					.getFirstElement(),
+					org.pahospital.www.radiologyservice.RadiologyOrderID.class,
+					getEnvelopeNamespaces(_returnEnv));
 
+			return (org.pahospital.www.radiologyservice.RadiologyOrderID) object;
 
-              // create SOAP envelope with that payload
-              org.apache.axiom.soap.SOAPEnvelope env=null;
-              final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
+		} catch (org.apache.axis2.AxisFault f) {
 
-                    
-                                    //Style is Doc.
-                                    
-                                                    
-                                                    env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
-                                                    radiologyOrder56,
-                                                    optimizeContent(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "orderRadiologyExamination")), new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
-                                                    "orderRadiologyExamination"));
-                                                
-        // adding SOAP soap_headers
-         _serviceClient.addHeadersToEnvelope(env);
-        // create message context with that soap envelope
-        _messageContext.setEnvelope(env);
+			org.apache.axiom.om.OMElement faultElt = f.getDetail();
+			if (faultElt != null) {
+				if (faultExceptionNameMap
+						.containsKey(new org.apache.axis2.client.FaultMapKey(
+								faultElt.getQName(),
+								"OrderRadiologyExamination"))) {
+					// make the fault by reflection
+					try {
+						java.lang.String exceptionClassName = (java.lang.String) faultExceptionClassNameMap
+								.get(new org.apache.axis2.client.FaultMapKey(
+										faultElt.getQName(),
+										"OrderRadiologyExamination"));
+						java.lang.Class exceptionClass = java.lang.Class
+								.forName(exceptionClassName);
+						java.lang.Exception ex = (java.lang.Exception) exceptionClass
+								.newInstance();
+						// message class
+						java.lang.String messageClassName = (java.lang.String) faultMessageMap
+								.get(new org.apache.axis2.client.FaultMapKey(
+										faultElt.getQName(),
+										"OrderRadiologyExamination"));
+						java.lang.Class messageClass = java.lang.Class
+								.forName(messageClassName);
+						java.lang.Object messageObject = fromOM(faultElt,
+								messageClass, null);
+						java.lang.reflect.Method m = exceptionClass.getMethod(
+								"setFaultMessage",
+								new java.lang.Class[] { messageClass });
+						m.invoke(ex, new java.lang.Object[] { messageObject });
 
-        // add the message context to the operation client
-        _operationClient.addMessageContext(_messageContext);
+						throw new java.rmi.RemoteException(ex.getMessage(), ex);
+					} catch (java.lang.ClassCastException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.ClassNotFoundException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.NoSuchMethodException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.reflect.InvocationTargetException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.IllegalAccessException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					} catch (java.lang.InstantiationException e) {
+						// we cannot intantiate the class - throw the original
+						// Axis fault
+						throw f;
+					}
+				} else {
+					throw f;
+				}
+			} else {
+				throw f;
+			}
+		} finally {
+			if (_messageContext.getTransportOut() != null) {
+				_messageContext.getTransportOut().getSender()
+						.cleanup(_messageContext);
+			}
+		}
+	}
 
+	/**
+	 * Auto generated method signature for Asynchronous Invocations
+	 * 
+	 * @see org.pahospital.www.radiologyservice.server.RadiologyService#startorderRadiologyExamination
+	 * @param radiologyOrder56
+	 */
+	public void startorderRadiologyExamination(
 
-                    
-                        _operationClient.setCallback(new org.apache.axis2.client.async.AxisCallback() {
-                            public void onMessage(org.apache.axis2.context.MessageContext resultContext) {
-                            try {
-                                org.apache.axiom.soap.SOAPEnvelope resultEnv = resultContext.getEnvelope();
-                                
-                                        java.lang.Object object = fromOM(resultEnv.getBody().getFirstElement(),
-                                                                         org.pahospital.www.radiologyservice.RadiologyOrderID.class,
-                                                                         getEnvelopeNamespaces(resultEnv));
-                                        callback.receiveResultorderRadiologyExamination(
-                                        (org.pahospital.www.radiologyservice.RadiologyOrderID)object);
-                                        
-                            } catch (org.apache.axis2.AxisFault e) {
-                                callback.receiveErrororderRadiologyExamination(e);
-                            }
-                            }
+			org.pahospital.www.radiologyservice.RadiologyOrder radiologyOrder56,
 
-                            public void onError(java.lang.Exception error) {
-								if (error instanceof org.apache.axis2.AxisFault) {
-									org.apache.axis2.AxisFault f = (org.apache.axis2.AxisFault) error;
-									org.apache.axiom.om.OMElement faultElt = f.getDetail();
-									if (faultElt!=null){
-										if (faultExceptionNameMap.containsKey(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"OrderRadiologyExamination"))){
-											//make the fault by reflection
-											try{
-													java.lang.String exceptionClassName = (java.lang.String)faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"OrderRadiologyExamination"));
-													java.lang.Class exceptionClass = java.lang.Class.forName(exceptionClassName);
-													java.lang.Exception ex = (java.lang.Exception) exceptionClass.newInstance();
-													//message class
-													java.lang.String messageClassName = (java.lang.String)faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(faultElt.getQName(),"OrderRadiologyExamination"));
-														java.lang.Class messageClass = java.lang.Class.forName(messageClassName);
-													java.lang.Object messageObject = fromOM(faultElt,messageClass,null);
-													java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-															new java.lang.Class[]{messageClass});
-													m.invoke(ex,new java.lang.Object[]{messageObject});
-													
-					
-										            callback.receiveErrororderRadiologyExamination(new java.rmi.RemoteException(ex.getMessage(), ex));
-                                            } catch(java.lang.ClassCastException e){
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrororderRadiologyExamination(f);
-                                            } catch (java.lang.ClassNotFoundException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrororderRadiologyExamination(f);
-                                            } catch (java.lang.NoSuchMethodException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrororderRadiologyExamination(f);
-                                            } catch (java.lang.reflect.InvocationTargetException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrororderRadiologyExamination(f);
-                                            } catch (java.lang.IllegalAccessException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrororderRadiologyExamination(f);
-                                            } catch (java.lang.InstantiationException e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrororderRadiologyExamination(f);
-                                            } catch (org.apache.axis2.AxisFault e) {
-                                                // we cannot intantiate the class - throw the original Axis fault
-                                                callback.receiveErrororderRadiologyExamination(f);
-                                            }
-									    } else {
-										    callback.receiveErrororderRadiologyExamination(f);
-									    }
-									} else {
-									    callback.receiveErrororderRadiologyExamination(f);
+			final org.pahospital.www.radiologyservice.server.RadiologyServiceCallbackHandler callback)
+
+	throws java.rmi.RemoteException {
+
+		org.apache.axis2.client.OperationClient _operationClient = _serviceClient
+				.createClient(_operations[3].getName());
+		_operationClient
+				.getOptions()
+				.setAction(
+						"http://www.PAHospital.org/RadiologyService/OrderRadiologyExamination");
+		_operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+
+		addPropertyToOperationClient(
+				_operationClient,
+				org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+				"&");
+
+		// create SOAP envelope with that payload
+		org.apache.axiom.soap.SOAPEnvelope env = null;
+		final org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
+
+		// Style is Doc.
+
+		env = toEnvelope(getFactory(_operationClient.getOptions()
+				.getSoapVersionURI()), radiologyOrder56,
+				optimizeContent(new javax.xml.namespace.QName(
+						"http://www.PAHospital.org/RadiologyService/",
+						"orderRadiologyExamination")),
+				new javax.xml.namespace.QName(
+						"http://www.PAHospital.org/RadiologyService/",
+						"orderRadiologyExamination"));
+
+		// adding SOAP soap_headers
+		_serviceClient.addHeadersToEnvelope(env);
+		// create message context with that soap envelope
+		_messageContext.setEnvelope(env);
+
+		// add the message context to the operation client
+		_operationClient.addMessageContext(_messageContext);
+
+		_operationClient
+				.setCallback(new org.apache.axis2.client.async.AxisCallback() {
+					public void onMessage(
+							org.apache.axis2.context.MessageContext resultContext) {
+						try {
+							org.apache.axiom.soap.SOAPEnvelope resultEnv = resultContext
+									.getEnvelope();
+
+							java.lang.Object object = fromOM(
+									resultEnv.getBody().getFirstElement(),
+									org.pahospital.www.radiologyservice.RadiologyOrderID.class,
+									getEnvelopeNamespaces(resultEnv));
+							callback.receiveResultorderRadiologyExamination((org.pahospital.www.radiologyservice.RadiologyOrderID) object);
+
+						} catch (org.apache.axis2.AxisFault e) {
+							callback.receiveErrororderRadiologyExamination(e);
+						}
+					}
+
+					public void onError(java.lang.Exception error) {
+						if (error instanceof org.apache.axis2.AxisFault) {
+							org.apache.axis2.AxisFault f = (org.apache.axis2.AxisFault) error;
+							org.apache.axiom.om.OMElement faultElt = f
+									.getDetail();
+							if (faultElt != null) {
+								if (faultExceptionNameMap
+										.containsKey(new org.apache.axis2.client.FaultMapKey(
+												faultElt.getQName(),
+												"OrderRadiologyExamination"))) {
+									// make the fault by reflection
+									try {
+										java.lang.String exceptionClassName = (java.lang.String) faultExceptionClassNameMap
+												.get(new org.apache.axis2.client.FaultMapKey(
+														faultElt.getQName(),
+														"OrderRadiologyExamination"));
+										java.lang.Class exceptionClass = java.lang.Class
+												.forName(exceptionClassName);
+										java.lang.Exception ex = (java.lang.Exception) exceptionClass
+												.newInstance();
+										// message class
+										java.lang.String messageClassName = (java.lang.String) faultMessageMap
+												.get(new org.apache.axis2.client.FaultMapKey(
+														faultElt.getQName(),
+														"OrderRadiologyExamination"));
+										java.lang.Class messageClass = java.lang.Class
+												.forName(messageClassName);
+										java.lang.Object messageObject = fromOM(
+												faultElt, messageClass, null);
+										java.lang.reflect.Method m = exceptionClass
+												.getMethod(
+														"setFaultMessage",
+														new java.lang.Class[] { messageClass });
+										m.invoke(
+												ex,
+												new java.lang.Object[] { messageObject });
+
+										callback.receiveErrororderRadiologyExamination(new java.rmi.RemoteException(
+												ex.getMessage(), ex));
+									} catch (java.lang.ClassCastException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrororderRadiologyExamination(f);
+									} catch (java.lang.ClassNotFoundException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrororderRadiologyExamination(f);
+									} catch (java.lang.NoSuchMethodException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrororderRadiologyExamination(f);
+									} catch (java.lang.reflect.InvocationTargetException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrororderRadiologyExamination(f);
+									} catch (java.lang.IllegalAccessException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrororderRadiologyExamination(f);
+									} catch (java.lang.InstantiationException e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrororderRadiologyExamination(f);
+									} catch (org.apache.axis2.AxisFault e) {
+										// we cannot intantiate the class -
+										// throw the original Axis fault
+										callback.receiveErrororderRadiologyExamination(f);
 									}
 								} else {
-								    callback.receiveErrororderRadiologyExamination(error);
+									callback.receiveErrororderRadiologyExamination(f);
 								}
-                            }
+							} else {
+								callback.receiveErrororderRadiologyExamination(f);
+							}
+						} else {
+							callback.receiveErrororderRadiologyExamination(error);
+						}
+					}
 
-                            public void onFault(org.apache.axis2.context.MessageContext faultContext) {
-                                org.apache.axis2.AxisFault fault = org.apache.axis2.util.Utils.getInboundFaultFromMessageContext(faultContext);
-                                onError(fault);
-                            }
+					public void onFault(
+							org.apache.axis2.context.MessageContext faultContext) {
+						org.apache.axis2.AxisFault fault = org.apache.axis2.util.Utils
+								.getInboundFaultFromMessageContext(faultContext);
+						onError(fault);
+					}
 
-                            public void onComplete() {
-                                try {
-                                    _messageContext.getTransportOut().getSender().cleanup(_messageContext);
-                                } catch (org.apache.axis2.AxisFault axisFault) {
-                                    callback.receiveErrororderRadiologyExamination(axisFault);
-                                }
-                            }
-                });
-                        
+					public void onComplete() {
+						try {
+							_messageContext.getTransportOut().getSender()
+									.cleanup(_messageContext);
+						} catch (org.apache.axis2.AxisFault axisFault) {
+							callback.receiveErrororderRadiologyExamination(axisFault);
+						}
+					}
+				});
 
-          org.apache.axis2.util.CallbackReceiver _callbackReceiver = null;
-        if ( _operations[3].getMessageReceiver()==null &&  _operationClient.getOptions().isUseSeparateListener()) {
-           _callbackReceiver = new org.apache.axis2.util.CallbackReceiver();
-          _operations[3].setMessageReceiver(
-                    _callbackReceiver);
-        }
+		org.apache.axis2.util.CallbackReceiver _callbackReceiver = null;
+		if (_operations[3].getMessageReceiver() == null
+				&& _operationClient.getOptions().isUseSeparateListener()) {
+			_callbackReceiver = new org.apache.axis2.util.CallbackReceiver();
+			_operations[3].setMessageReceiver(_callbackReceiver);
+		}
 
-           //execute the operation client
-           _operationClient.execute(false);
+		// execute the operation client
+		_operationClient.execute(false);
 
-                    }
-                
+	}
 
+	/**
+	 * A utility method that copies the namepaces from the SOAPEnvelope
+	 */
+	private java.util.Map getEnvelopeNamespaces(
+			org.apache.axiom.soap.SOAPEnvelope env) {
+		java.util.Map returnMap = new java.util.HashMap();
+		java.util.Iterator namespaceIterator = env.getAllDeclaredNamespaces();
+		while (namespaceIterator.hasNext()) {
+			org.apache.axiom.om.OMNamespace ns = (org.apache.axiom.om.OMNamespace) namespaceIterator
+					.next();
+			returnMap.put(ns.getPrefix(), ns.getNamespaceURI());
+		}
+		return returnMap;
+	}
 
-       /**
-        *  A utility method that copies the namepaces from the SOAPEnvelope
-        */
-       private java.util.Map getEnvelopeNamespaces(org.apache.axiom.soap.SOAPEnvelope env){
-        java.util.Map returnMap = new java.util.HashMap();
-        java.util.Iterator namespaceIterator = env.getAllDeclaredNamespaces();
-        while (namespaceIterator.hasNext()) {
-            org.apache.axiom.om.OMNamespace ns = (org.apache.axiom.om.OMNamespace) namespaceIterator.next();
-            returnMap.put(ns.getPrefix(),ns.getNamespaceURI());
-        }
-       return returnMap;
-    }
+	private javax.xml.namespace.QName[] opNameArray = null;
 
-    
-    
-    private javax.xml.namespace.QName[] opNameArray = null;
-    private boolean optimizeContent(javax.xml.namespace.QName opName) {
-        
+	private boolean optimizeContent(javax.xml.namespace.QName opName) {
 
-        if (opNameArray == null) {
-            return false;
-        }
-        for (int i = 0; i < opNameArray.length; i++) {
-            if (opName.equals(opNameArray[i])) {
-                return true;   
-            }
-        }
-        return false;
-    }
-     //http://www.PAHospital.org/RadiologyService
-            private  org.apache.axiom.om.OMElement  toOM(org.pahospital.www.radiologyservice.Appointment param, boolean optimizeContent)
-            throws org.apache.axis2.AxisFault {
+		if (opNameArray == null) {
+			return false;
+		}
+		for (int i = 0; i < opNameArray.length; i++) {
+			if (opName.equals(opNameArray[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-            
-                        try{
-                             return param.getOMElement(org.pahospital.www.radiologyservice.Appointment.MY_QNAME,
-                                          org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-                        } catch(org.apache.axis2.databinding.ADBException e){
-                            throw org.apache.axis2.AxisFault.makeFault(e);
-                        }
-                    
+	// http://www.PAHospital.org/RadiologyService
+	private org.apache.axiom.om.OMElement toOM(
+			org.pahospital.www.radiologyservice.Appointment param,
+			boolean optimizeContent) throws org.apache.axis2.AxisFault {
 
-            }
-        
-            private  org.apache.axiom.om.OMElement  toOM(org.pahospital.www.radiologyservice.RadiologyOrderID param, boolean optimizeContent)
-            throws org.apache.axis2.AxisFault {
+		try {
+			return param.getOMElement(
+					org.pahospital.www.radiologyservice.Appointment.MY_QNAME,
+					org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+		} catch (org.apache.axis2.databinding.ADBException e) {
+			throw org.apache.axis2.AxisFault.makeFault(e);
+		}
 
-            
-                        try{
-                             return param.getOMElement(org.pahospital.www.radiologyservice.RadiologyOrderID.MY_QNAME,
-                                          org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-                        } catch(org.apache.axis2.databinding.ADBException e){
-                            throw org.apache.axis2.AxisFault.makeFault(e);
-                        }
-                    
+	}
 
-            }
-        
-            private  org.apache.axiom.om.OMElement  toOM(org.pahospital.www.radiologyservice.OrderStatus param, boolean optimizeContent)
-            throws org.apache.axis2.AxisFault {
+	private org.apache.axiom.om.OMElement toOM(
+			org.pahospital.www.radiologyservice.RadiologyOrderID param,
+			boolean optimizeContent) throws org.apache.axis2.AxisFault {
 
-            
-                        try{
-                             return param.getOMElement(org.pahospital.www.radiologyservice.OrderStatus.MY_QNAME,
-                                          org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-                        } catch(org.apache.axis2.databinding.ADBException e){
-                            throw org.apache.axis2.AxisFault.makeFault(e);
-                        }
-                    
+		try {
+			return param
+					.getOMElement(
+							org.pahospital.www.radiologyservice.RadiologyOrderID.MY_QNAME,
+							org.apache.axiom.om.OMAbstractFactory
+									.getOMFactory());
+		} catch (org.apache.axis2.databinding.ADBException e) {
+			throw org.apache.axis2.AxisFault.makeFault(e);
+		}
 
-            }
-        
-            private  org.apache.axiom.om.OMElement  toOM(org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment param, boolean optimizeContent)
-            throws org.apache.axis2.AxisFault {
+	}
 
-            
-                        try{
-                             return param.getOMElement(org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment.MY_QNAME,
-                                          org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-                        } catch(org.apache.axis2.databinding.ADBException e){
-                            throw org.apache.axis2.AxisFault.makeFault(e);
-                        }
-                    
+	private org.apache.axiom.om.OMElement toOM(
+			org.pahospital.www.radiologyservice.OrderStatus param,
+			boolean optimizeContent) throws org.apache.axis2.AxisFault {
 
-            }
-        
-            private  org.apache.axiom.om.OMElement  toOM(org.pahospital.www.radiologyservice.RadiologyOrder param, boolean optimizeContent)
-            throws org.apache.axis2.AxisFault {
+		try {
+			return param.getOMElement(
+					org.pahospital.www.radiologyservice.OrderStatus.MY_QNAME,
+					org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+		} catch (org.apache.axis2.databinding.ADBException e) {
+			throw org.apache.axis2.AxisFault.makeFault(e);
+		}
 
-            
-                        try{
-                             return param.getOMElement(org.pahospital.www.radiologyservice.RadiologyOrder.MY_QNAME,
-                                          org.apache.axiom.om.OMAbstractFactory.getOMFactory());
-                        } catch(org.apache.axis2.databinding.ADBException e){
-                            throw org.apache.axis2.AxisFault.makeFault(e);
-                        }
-                    
+	}
 
-            }
-        
-                                    
-                                        private  org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, org.pahospital.www.radiologyservice.Appointment param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
-                                        throws org.apache.axis2.AxisFault{
+	private org.apache.axiom.om.OMElement toOM(
+			org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment param,
+			boolean optimizeContent) throws org.apache.axis2.AxisFault {
 
-                                             
-                                                    try{
+		try {
+			return param
+					.getOMElement(
+							org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment.MY_QNAME,
+							org.apache.axiom.om.OMAbstractFactory
+									.getOMFactory());
+		} catch (org.apache.axis2.databinding.ADBException e) {
+			throw org.apache.axis2.AxisFault.makeFault(e);
+		}
 
-                                                            org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-                                                            emptyEnvelope.getBody().addChild(param.getOMElement(org.pahospital.www.radiologyservice.Appointment.MY_QNAME,factory));
-                                                            return emptyEnvelope;
-                                                        } catch(org.apache.axis2.databinding.ADBException e){
-                                                            throw org.apache.axis2.AxisFault.makeFault(e);
-                                                        }
-                                                
+	}
 
-                                        }
-                                
-                             
-                             /* methods to provide back word compatibility */
+	private org.apache.axiom.om.OMElement toOM(
+			org.pahospital.www.radiologyservice.RadiologyOrder param,
+			boolean optimizeContent) throws org.apache.axis2.AxisFault {
 
-                             
-                                    
-                                        private  org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, org.pahospital.www.radiologyservice.RadiologyOrderID param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
-                                        throws org.apache.axis2.AxisFault{
+		try {
+			return param
+					.getOMElement(
+							org.pahospital.www.radiologyservice.RadiologyOrder.MY_QNAME,
+							org.apache.axiom.om.OMAbstractFactory
+									.getOMFactory());
+		} catch (org.apache.axis2.databinding.ADBException e) {
+			throw org.apache.axis2.AxisFault.makeFault(e);
+		}
 
-                                             
-                                                    try{
+	}
 
-                                                            org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-                                                            emptyEnvelope.getBody().addChild(param.getOMElement(org.pahospital.www.radiologyservice.RadiologyOrderID.MY_QNAME,factory));
-                                                            return emptyEnvelope;
-                                                        } catch(org.apache.axis2.databinding.ADBException e){
-                                                            throw org.apache.axis2.AxisFault.makeFault(e);
-                                                        }
-                                                
+	private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
+			org.apache.axiom.soap.SOAPFactory factory,
+			org.pahospital.www.radiologyservice.Appointment param,
+			boolean optimizeContent, javax.xml.namespace.QName methodQName)
+			throws org.apache.axis2.AxisFault {
 
-                                        }
-                                
-                             
-                             /* methods to provide back word compatibility */
+		try {
 
-                             
-                                    
-                                        private  org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
-                                        throws org.apache.axis2.AxisFault{
+			org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory
+					.getDefaultEnvelope();
+			emptyEnvelope
+					.getBody()
+					.addChild(
+							param.getOMElement(
+									org.pahospital.www.radiologyservice.Appointment.MY_QNAME,
+									factory));
+			return emptyEnvelope;
+		} catch (org.apache.axis2.databinding.ADBException e) {
+			throw org.apache.axis2.AxisFault.makeFault(e);
+		}
 
-                                             
-                                                    try{
+	}
 
-                                                            org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-                                                            emptyEnvelope.getBody().addChild(param.getOMElement(org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment.MY_QNAME,factory));
-                                                            return emptyEnvelope;
-                                                        } catch(org.apache.axis2.databinding.ADBException e){
-                                                            throw org.apache.axis2.AxisFault.makeFault(e);
-                                                        }
-                                                
+	/* methods to provide back word compatibility */
 
-                                        }
-                                
-                             
-                             /* methods to provide back word compatibility */
+	private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
+			org.apache.axiom.soap.SOAPFactory factory,
+			org.pahospital.www.radiologyservice.RadiologyOrderID param,
+			boolean optimizeContent, javax.xml.namespace.QName methodQName)
+			throws org.apache.axis2.AxisFault {
 
-                             
-                                    
-                                        private  org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, org.pahospital.www.radiologyservice.RadiologyOrder param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
-                                        throws org.apache.axis2.AxisFault{
+		try {
 
-                                             
-                                                    try{
+			org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory
+					.getDefaultEnvelope();
+			emptyEnvelope
+					.getBody()
+					.addChild(
+							param.getOMElement(
+									org.pahospital.www.radiologyservice.RadiologyOrderID.MY_QNAME,
+									factory));
+			return emptyEnvelope;
+		} catch (org.apache.axis2.databinding.ADBException e) {
+			throw org.apache.axis2.AxisFault.makeFault(e);
+		}
 
-                                                            org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-                                                            emptyEnvelope.getBody().addChild(param.getOMElement(org.pahospital.www.radiologyservice.RadiologyOrder.MY_QNAME,factory));
-                                                            return emptyEnvelope;
-                                                        } catch(org.apache.axis2.databinding.ADBException e){
-                                                            throw org.apache.axis2.AxisFault.makeFault(e);
-                                                        }
-                                                
+	}
 
-                                        }
-                                
-                             
-                             /* methods to provide back word compatibility */
+	/* methods to provide back word compatibility */
 
-                             
+	private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
+			org.apache.axiom.soap.SOAPFactory factory,
+			org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment param,
+			boolean optimizeContent, javax.xml.namespace.QName methodQName)
+			throws org.apache.axis2.AxisFault {
 
+		try {
 
-        /**
-        *  get the default envelope
-        */
-        private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory){
-        return factory.getDefaultEnvelope();
-        }
+			org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory
+					.getDefaultEnvelope();
+			emptyEnvelope
+					.getBody()
+					.addChild(
+							param.getOMElement(
+									org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment.MY_QNAME,
+									factory));
+			return emptyEnvelope;
+		} catch (org.apache.axis2.databinding.ADBException e) {
+			throw org.apache.axis2.AxisFault.makeFault(e);
+		}
 
+	}
 
-        private  java.lang.Object fromOM(
-        org.apache.axiom.om.OMElement param,
-        java.lang.Class type,
-        java.util.Map extraNamespaces) throws org.apache.axis2.AxisFault{
+	/* methods to provide back word compatibility */
 
-        try {
-        
-                if (org.pahospital.www.radiologyservice.Appointment.class.equals(type)){
-                
-                           return org.pahospital.www.radiologyservice.Appointment.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-                    
+	private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
+			org.apache.axiom.soap.SOAPFactory factory,
+			org.pahospital.www.radiologyservice.RadiologyOrder param,
+			boolean optimizeContent, javax.xml.namespace.QName methodQName)
+			throws org.apache.axis2.AxisFault {
 
-                }
-           
-                if (org.pahospital.www.radiologyservice.Appointment.class.equals(type)){
-                
-                           return org.pahospital.www.radiologyservice.Appointment.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-                    
+		try {
 
-                }
-           
-                if (org.pahospital.www.radiologyservice.RadiologyOrderID.class.equals(type)){
-                
-                           return org.pahospital.www.radiologyservice.RadiologyOrderID.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-                    
+			org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory
+					.getDefaultEnvelope();
+			emptyEnvelope
+					.getBody()
+					.addChild(
+							param.getOMElement(
+									org.pahospital.www.radiologyservice.RadiologyOrder.MY_QNAME,
+									factory));
+			return emptyEnvelope;
+		} catch (org.apache.axis2.databinding.ADBException e) {
+			throw org.apache.axis2.AxisFault.makeFault(e);
+		}
 
-                }
-           
-                if (org.pahospital.www.radiologyservice.OrderStatus.class.equals(type)){
-                
-                           return org.pahospital.www.radiologyservice.OrderStatus.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-                    
+	}
 
-                }
-           
-                if (org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment.class.equals(type)){
-                
-                           return org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-                    
+	/* methods to provide back word compatibility */
 
-                }
-           
-                if (org.pahospital.www.radiologyservice.RadiologyOrder.class.equals(type)){
-                
-                           return org.pahospital.www.radiologyservice.RadiologyOrder.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-                    
+	/**
+	 * get the default envelope
+	 */
+	private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
+			org.apache.axiom.soap.SOAPFactory factory) {
+		return factory.getDefaultEnvelope();
+	}
 
-                }
-           
-                if (org.pahospital.www.radiologyservice.RadiologyOrderID.class.equals(type)){
-                
-                           return org.pahospital.www.radiologyservice.RadiologyOrderID.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-                    
+	private java.lang.Object fromOM(org.apache.axiom.om.OMElement param,
+			java.lang.Class type, java.util.Map extraNamespaces)
+			throws org.apache.axis2.AxisFault {
 
-                }
-           
-        } catch (java.lang.Exception e) {
-        throw org.apache.axis2.AxisFault.makeFault(e);
-        }
-           return null;
-        }
+		try {
 
+			if (org.pahospital.www.radiologyservice.Appointment.class
+					.equals(type)) {
 
+				return org.pahospital.www.radiologyservice.Appointment.Factory
+						.parse(param.getXMLStreamReaderWithoutCaching());
 
-    
-   }
-   
+			}
+
+			if (org.pahospital.www.radiologyservice.Appointment.class
+					.equals(type)) {
+
+				return org.pahospital.www.radiologyservice.Appointment.Factory
+						.parse(param.getXMLStreamReaderWithoutCaching());
+
+			}
+
+			if (org.pahospital.www.radiologyservice.RadiologyOrderID.class
+					.equals(type)) {
+
+				return org.pahospital.www.radiologyservice.RadiologyOrderID.Factory
+						.parse(param.getXMLStreamReaderWithoutCaching());
+
+			}
+
+			if (org.pahospital.www.radiologyservice.OrderStatus.class
+					.equals(type)) {
+
+				return org.pahospital.www.radiologyservice.OrderStatus.Factory
+						.parse(param.getXMLStreamReaderWithoutCaching());
+
+			}
+
+			if (org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment.class
+					.equals(type)) {
+
+				return org.pahospital.www.radiologyservice.RadiologyOrderIDForPayment.Factory
+						.parse(param.getXMLStreamReaderWithoutCaching());
+
+			}
+
+			if (org.pahospital.www.radiologyservice.RadiologyOrder.class
+					.equals(type)) {
+
+				return org.pahospital.www.radiologyservice.RadiologyOrder.Factory
+						.parse(param.getXMLStreamReaderWithoutCaching());
+
+			}
+
+			if (org.pahospital.www.radiologyservice.RadiologyOrderID.class
+					.equals(type)) {
+
+				return org.pahospital.www.radiologyservice.RadiologyOrderID.Factory
+						.parse(param.getXMLStreamReaderWithoutCaching());
+
+			}
+
+		} catch (java.lang.Exception e) {
+			throw org.apache.axis2.AxisFault.makeFault(e);
+		}
+		return null;
+	}
+
+}

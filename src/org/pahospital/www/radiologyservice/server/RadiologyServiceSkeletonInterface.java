@@ -46,8 +46,9 @@ public interface RadiologyServiceSkeletonInterface {
 	 * 
 	 * @param radiologyOrder
 	 * @throws SOAPException
+	 * @throws InterruptedException 
 	 */
 
-	public RadiologyOrderID orderRadiologyExamination(RadiologyOrder radiologyOrder) throws SOAPException;
+	public RadiologyOrderID orderRadiologyExamination(RadiologyOrder radiologyOrder) throws SOAPException, InterruptedException;
 
 }
