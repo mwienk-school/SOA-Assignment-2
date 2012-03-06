@@ -12,8 +12,9 @@ import java.util.HashMap;
 import javax.xml.soap.SOAPException;
 
 import org.pahospital.www.radiologycallbackservice.*;
+import org.pahospital.www.radiologycallbackservice.RadiologyReport;
 import org.pahospital.www.radiologyservice.*;
-import org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceSkeleton.RadiologyReport;
+
 
 /**
  * RadiologyServiceSkeleton java skeleton for the axisService
