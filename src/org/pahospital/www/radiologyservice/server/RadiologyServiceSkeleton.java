@@ -96,7 +96,6 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	 * @throws InterruptedException 
 	 */
 	public RadiologyOrderID orderRadiologyExamination(RadiologyOrder radiologyOrder) throws SOAPException, InterruptedException {
-		RadiologyOrderID result = null;
 		RadiologyOrderID id = new RadiologyOrderID();
 		id.setRadiologyOrderID(String.valueOf(this.maxOrderId));
 		if(!this.orderList.containsKey(id)) {
@@ -114,7 +113,7 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 			RadiologyReport report = new RadiologyReport();
 			report.setRadiologyOrderID(id.getRadiologyOrderID());
 			report.setReportText("The result was very positive");
-			report.setRadiologyOrderID(radiologyOrder.getPatientID());
+			report.setPatientID(radiologyOrder.getPatientID());
 			report.setDateOfExamination(new java.util.Date());
 			reports.put(id, report);
 			

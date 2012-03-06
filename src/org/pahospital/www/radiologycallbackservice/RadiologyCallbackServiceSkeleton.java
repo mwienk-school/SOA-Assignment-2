@@ -19,8 +19,14 @@ public class RadiologyCallbackServiceSkeleton implements RadiologyCallbackServic
 	 */
 
 	public void sendRadiologyReport(RadiologyReport radiologyReport) {
-		// TODO : fill this with the necessary business logic
-
+		System.out.println("======================================");
+		System.out.println("=====       Radiology report     =====");
+		System.out.println("======================================");
+		System.out.println("== Patient id: " + radiologyReport.getPatientID());
+		System.out.println("== Order id  : " + radiologyReport.getRadiologyOrderID());
+		System.out.println("== Date      : " + radiologyReport.getDateOfExamination());
+		System.out.println("== Report    :");
+		System.out.println(radiologyReport.getReportText());
 	}
 
 }
