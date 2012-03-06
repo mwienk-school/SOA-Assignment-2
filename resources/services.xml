@@ -2,15 +2,28 @@
 <!-- This file was auto-generated from WSDL -->
 <!-- by the Apache Axis2 version: 1.6.1  Built on : Aug 31, 2011 (12:22:40 CEST) -->
 <serviceGroup>
-    <service name="RadiologyCallbackService">
+    <service name="RadiologyService">
         <messageReceivers>
-            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-only" class="org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceMessageReceiverInOnly"/>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="org.pahospital.www.radiologyservice.server.RadiologyServiceMessageReceiverInOut"/>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-only" class="org.pahospital.www.radiologyservice.server.RadiologyServiceMessageReceiverInOnly"/>
         </messageReceivers>
-        <parameter name="ServiceClass">org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceSkeleton</parameter>
+        <parameter name="ServiceClass">org.pahospital.www.radiologyservice.server.RadiologyServiceSkeleton</parameter>
         <parameter name="useOriginalwsdl">true</parameter>
         <parameter name="modifyUserWSDLPortAddress">true</parameter>
-        <operation name="SendRadiologyReport" mep="http://www.w3.org/ns/wsdl/in-only" namespace="http://www.PAHospital.org/RadiologyCallbackService/">
-            <actionMapping>http://www.PAHospital.org/RadiologyCallbackService/SendRadiologyReport</actionMapping>
+        <operation name="RequestAppointment" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://www.PAHospital.org/RadiologyService/">
+            <actionMapping>http://www.PAHospital.org/RadiologyService/RequestAppointment</actionMapping>
+            <outputActionMapping>http://www.PAHospital.org/RadiologyService/Radiology/RequestAppointmentResponse</outputActionMapping>
+        </operation>
+        <operation name="GetOrderStatus" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://www.PAHospital.org/RadiologyService/">
+            <actionMapping>http://www.PAHospital.org/RadiologyService/GetOrderStatus</actionMapping>
+            <outputActionMapping>http://www.PAHospital.org/RadiologyService/Radiology/GetOrderStatusResponse</outputActionMapping>
+        </operation>
+        <operation name="MakePayment" mep="http://www.w3.org/ns/wsdl/in-only" namespace="http://www.PAHospital.org/RadiologyService/">
+            <actionMapping>http://www.PAHospital.org/RadiologyService/MakePayment</actionMapping>
+        </operation>
+        <operation name="OrderRadiologyExamination" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://www.PAHospital.org/RadiologyService/">
+            <actionMapping>http://www.PAHospital.org/RadiologyService/OrderRadiologyExamination</actionMapping>
+            <outputActionMapping>http://www.PAHospital.org/RadiologyService/Radiology/OrderRadiologyExaminationResponse</outputActionMapping>
         </operation>
     </service>
 </serviceGroup>

@@ -22,7 +22,7 @@
         // get the implementation class for the Web Service
         Object obj = getTheImplementationObject(msgContext);
 
-        RadiologyServiceSkeletonInterface skel = (RadiologyServiceSkeletonInterface)obj;
+        RadiologyServiceSkeleton skel = (RadiologyServiceSkeleton)obj;
         //Out Envelop
         org.apache.axiom.soap.SOAPEnvelope envelope = null;
         //Find the axisOperation that has been set by the Dispatch phase.
@@ -39,58 +39,58 @@
 
             if("requestAppointment".equals(methodName)){
                 
-                org.pahospital.www.radiologyservice.Appointment appointment10 = null;
+                org.pahospital.www.radiologyservice.Appointment appointment3 = null;
 	                        org.pahospital.www.radiologyservice.Appointment wrappedParam =
                                                              (org.pahospital.www.radiologyservice.Appointment)fromOM(
                                     msgContext.getEnvelope().getBody().getFirstElement(),
                                     org.pahospital.www.radiologyservice.Appointment.class,
                                     getEnvelopeNamespaces(msgContext.getEnvelope()));
                                                 
-                                               appointment10 =
+                                               appointment3 =
                                                    
                                                    
                                                          skel.requestAppointment(wrappedParam)
                                                     ;
                                             
-                                        envelope = toEnvelope(getSOAPFactory(msgContext), appointment10, false, new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
+                                        envelope = toEnvelope(getSOAPFactory(msgContext), appointment3, false, new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
                                                     "requestAppointment"));
                                     } else 
 
             if("getOrderStatus".equals(methodName)){
                 
-                org.pahospital.www.radiologyservice.OrderStatus orderStatus12 = null;
+                org.pahospital.www.radiologyservice.OrderStatus orderStatus5 = null;
 	                        org.pahospital.www.radiologyservice.RadiologyOrderID wrappedParam =
                                                              (org.pahospital.www.radiologyservice.RadiologyOrderID)fromOM(
                                     msgContext.getEnvelope().getBody().getFirstElement(),
                                     org.pahospital.www.radiologyservice.RadiologyOrderID.class,
                                     getEnvelopeNamespaces(msgContext.getEnvelope()));
                                                 
-                                               orderStatus12 =
+                                               orderStatus5 =
                                                    
                                                    
                                                          skel.getOrderStatus(wrappedParam)
                                                     ;
                                             
-                                        envelope = toEnvelope(getSOAPFactory(msgContext), orderStatus12, false, new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
+                                        envelope = toEnvelope(getSOAPFactory(msgContext), orderStatus5, false, new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
                                                     "getOrderStatus"));
                                     } else 
 
             if("orderRadiologyExamination".equals(methodName)){
                 
-                org.pahospital.www.radiologyservice.RadiologyOrderID radiologyOrderID14 = null;
+                org.pahospital.www.radiologyservice.RadiologyOrderID radiologyOrderID7 = null;
 	                        org.pahospital.www.radiologyservice.RadiologyOrder wrappedParam =
                                                              (org.pahospital.www.radiologyservice.RadiologyOrder)fromOM(
                                     msgContext.getEnvelope().getBody().getFirstElement(),
                                     org.pahospital.www.radiologyservice.RadiologyOrder.class,
                                     getEnvelopeNamespaces(msgContext.getEnvelope()));
                                                 
-                                               radiologyOrderID14 =
+                                               radiologyOrderID7 =
                                                    
                                                    
                                                          skel.orderRadiologyExamination(wrappedParam)
                                                     ;
                                             
-                                        envelope = toEnvelope(getSOAPFactory(msgContext), radiologyOrderID14, false, new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
+                                        envelope = toEnvelope(getSOAPFactory(msgContext), radiologyOrderID7, false, new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyService/",
                                                     "orderRadiologyExamination"));
                                     
             } else {

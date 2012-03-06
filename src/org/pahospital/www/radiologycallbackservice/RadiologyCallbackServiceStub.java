@@ -1,27 +1,238 @@
 
 /**
- * RadiologyOrder.java
+ * RadiologyCallbackServiceStub.java
  *
  * This file was auto-generated from WSDL
- * by the Apache Axis2 version: 1.6.1  Built on : Aug 31, 2011 (12:23:23 CEST)
+ * by the Apache Axis2 version: 1.6.1  Built on : Aug 31, 2011 (12:22:40 CEST)
  */
+        package org.pahospital.www.radiologycallbackservice;
 
-            
-                package org.pahospital.www.radiologyservice;
-            
-
-            /**
-            *  RadiologyOrder bean class
-            */
-            @SuppressWarnings({"unchecked","unused"})
         
-        public  class RadiologyOrder
+
+        /*
+        *  RadiologyCallbackServiceStub java implementation
+        */
+
+        
+        public class RadiologyCallbackServiceStub extends org.apache.axis2.client.Stub
+        {
+        protected org.apache.axis2.description.AxisOperation[] _operations;
+
+        //hashmaps to keep the fault mapping
+        private java.util.HashMap faultExceptionNameMap = new java.util.HashMap();
+        private java.util.HashMap faultExceptionClassNameMap = new java.util.HashMap();
+        private java.util.HashMap faultMessageMap = new java.util.HashMap();
+
+        private static int counter = 0;
+
+        private static synchronized java.lang.String getUniqueSuffix(){
+            // reset the counter if it is greater than 99999
+            if (counter > 99999){
+                counter = 0;
+            }
+            counter = counter + 1; 
+            return java.lang.Long.toString(java.lang.System.currentTimeMillis()) + "_" + counter;
+        }
+
+    
+    private void populateAxisService() throws org.apache.axis2.AxisFault {
+
+     //creating the Service with a unique name
+     _service = new org.apache.axis2.description.AxisService("RadiologyCallbackService" + getUniqueSuffix());
+     addAnonymousOperations();
+
+        //creating the operations
+        org.apache.axis2.description.AxisOperation __operation;
+
+        _operations = new org.apache.axis2.description.AxisOperation[1];
+        
+                    __operation = new org.apache.axis2.description.OutOnlyAxisOperation();
+                
+
+            __operation.setName(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyCallbackService/", "sendRadiologyReport"));
+	    _service.addOperation(__operation);
+	    
+
+	    
+	    
+            _operations[0]=__operation;
+            
+        
+        }
+
+    //populates the faults
+    private void populateFaults(){
+         
+
+
+    }
+
+    /**
+      *Constructor that takes in a configContext
+      */
+
+    public RadiologyCallbackServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext,
+       java.lang.String targetEndpoint)
+       throws org.apache.axis2.AxisFault {
+         this(configurationContext,targetEndpoint,false);
+   }
+
+
+   /**
+     * Constructor that takes in a configContext  and useseperate listner
+     */
+   public RadiologyCallbackServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext,
+        java.lang.String targetEndpoint, boolean useSeparateListener)
+        throws org.apache.axis2.AxisFault {
+         //To populate AxisService
+         populateAxisService();
+         populateFaults();
+
+        _serviceClient = new org.apache.axis2.client.ServiceClient(configurationContext,_service);
+        
+	
+        _serviceClient.getOptions().setTo(new org.apache.axis2.addressing.EndpointReference(
+                targetEndpoint));
+        _serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
+        
+    
+    }
+
+    /**
+     * Default Constructor
+     */
+    public RadiologyCallbackServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
+        
+                    this(configurationContext,"http://localhost:8080/SOA_-_Assignment_2/services/RadiologyCallbackService" );
+                
+    }
+
+    /**
+     * Default Constructor
+     */
+    public RadiologyCallbackServiceStub() throws org.apache.axis2.AxisFault {
+        
+                    this("http://localhost:8080/SOA_-_Assignment_2/services/RadiologyCallbackService" );
+                
+    }
+
+    /**
+     * Constructor taking the target endpoint
+     */
+    public RadiologyCallbackServiceStub(java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
+        this(null,targetEndpoint);
+    }
+
+
+
+         
+                
+                /**
+                  * Auto generated method signature
+                  * 
+                  */
+                public void  sendRadiologyReport(
+                 org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport radiologyReport0
+
+                ) throws java.rmi.RemoteException
+                
+                
+                {
+                org.apache.axis2.context.MessageContext _messageContext = null;
+
+                
+                org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[0].getName());
+                _operationClient.getOptions().setAction("http://www.PAHospital.org/RadiologyCallbackService/SendRadiologyReport");
+                _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
+
+                
+              
+                  addPropertyToOperationClient(_operationClient,org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,"&");
+              
+                org.apache.axiom.soap.SOAPEnvelope env = null;
+                 _messageContext = new org.apache.axis2.context.MessageContext();
+
+                
+                                                    //Style is Doc.
+                                                    
+                                                                    
+                                                                    env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
+                                                                    radiologyReport0,
+                                                                    optimizeContent(new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyCallbackService/",
+                                                                    "sendRadiologyReport")),new javax.xml.namespace.QName("http://www.PAHospital.org/RadiologyCallbackService/",
+                                                                    "sendRadiologyReport"));
+                                                                
+
+              //adding SOAP soap_headers
+         _serviceClient.addHeadersToEnvelope(env);
+                // create message context with that soap envelope
+
+            _messageContext.setEnvelope(env);
+
+            // add the message contxt to the operation client
+            _operationClient.addMessageContext(_messageContext);
+
+             _operationClient.execute(true);
+
+           
+              if (_messageContext.getTransportOut() != null) {
+                      _messageContext.getTransportOut().getSender().cleanup(_messageContext);
+              }
+           
+             return;
+           }
+            
+
+
+       /**
+        *  A utility method that copies the namepaces from the SOAPEnvelope
+        */
+       private java.util.Map getEnvelopeNamespaces(org.apache.axiom.soap.SOAPEnvelope env){
+        java.util.Map returnMap = new java.util.HashMap();
+        java.util.Iterator namespaceIterator = env.getAllDeclaredNamespaces();
+        while (namespaceIterator.hasNext()) {
+            org.apache.axiom.om.OMNamespace ns = (org.apache.axiom.om.OMNamespace) namespaceIterator.next();
+            returnMap.put(ns.getPrefix(),ns.getNamespaceURI());
+        }
+       return returnMap;
+    }
+
+    
+    
+    private javax.xml.namespace.QName[] opNameArray = null;
+    private boolean optimizeContent(javax.xml.namespace.QName opName) {
+        
+
+        if (opNameArray == null) {
+            return false;
+        }
+        for (int i = 0; i < opNameArray.length; i++) {
+            if (opName.equals(opNameArray[i])) {
+                return true;   
+            }
+        }
+        return false;
+    }
+     //http://localhost:8080/SOA_-_Assignment_2/services/RadiologyCallbackService
+        public static class ExtensionMapper{
+
+          public static java.lang.Object getTypeObject(java.lang.String namespaceURI,
+                                                       java.lang.String typeName,
+                                                       javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
+
+              
+             throw new org.apache.axis2.databinding.ADBException("Unsupported type " + namespaceURI + " " + typeName);
+          }
+
+        }
+    
+        public static class RadiologyReport
         implements org.apache.axis2.databinding.ADBBean{
         
                 public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName(
-                "http://www.PAHospital.org/RadiologyService/",
-                "RadiologyOrder",
-                "ns2");
+                "http://www.PAHospital.org/RadiologyCallbackService/",
+                "RadiologyReport",
+                "ns1");
 
             
 
@@ -56,60 +267,90 @@
                             
 
                         /**
-                        * field for CaseID
+                        * field for RadiologyOrderID
                         */
 
                         
-                                    protected java.lang.String localCaseID ;
+                                    protected java.lang.String localRadiologyOrderID ;
                                 
 
                            /**
                            * Auto generated getter method
                            * @return java.lang.String
                            */
-                           public  java.lang.String getCaseID(){
-                               return localCaseID;
+                           public  java.lang.String getRadiologyOrderID(){
+                               return localRadiologyOrderID;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param CaseID
+                               * @param param RadiologyOrderID
                                */
-                               public void setCaseID(java.lang.String param){
+                               public void setRadiologyOrderID(java.lang.String param){
                             
-                                            this.localCaseID=param;
+                                            this.localRadiologyOrderID=param;
                                     
 
                                }
                             
 
                         /**
-                        * field for ExaminationType
+                        * field for DateOfExamination
                         */
 
                         
-                                    protected org.pahospital.www.radiologyservice.ExaminationType_type1 localExaminationType ;
+                                    protected java.util.Date localDateOfExamination ;
                                 
 
                            /**
                            * Auto generated getter method
-                           * @return org.pahospital.www.radiologyservice.ExaminationType_type1
+                           * @return java.util.Date
                            */
-                           public  org.pahospital.www.radiologyservice.ExaminationType_type1 getExaminationType(){
-                               return localExaminationType;
+                           public  java.util.Date getDateOfExamination(){
+                               return localDateOfExamination;
                            }
 
                            
                         
                             /**
                                * Auto generated setter method
-                               * @param param ExaminationType
+                               * @param param DateOfExamination
                                */
-                               public void setExaminationType(org.pahospital.www.radiologyservice.ExaminationType_type1 param){
+                               public void setDateOfExamination(java.util.Date param){
                             
-                                            this.localExaminationType=param;
+                                            this.localDateOfExamination=param;
+                                    
+
+                               }
+                            
+
+                        /**
+                        * field for ReportText
+                        */
+
+                        
+                                    protected java.lang.String localReportText ;
+                                
+
+                           /**
+                           * Auto generated getter method
+                           * @return java.lang.String
+                           */
+                           public  java.lang.String getReportText(){
+                               return localReportText;
+                           }
+
+                           
+                        
+                            /**
+                               * Auto generated setter method
+                               * @param param ReportText
+                               */
+                               public void setReportText(java.lang.String param){
+                            
+                                            this.localReportText=param;
                                     
 
                                }
@@ -160,14 +401,14 @@
                   if (serializeType){
                
 
-                   java.lang.String namespacePrefix = registerPrefix(xmlWriter,"http://www.PAHospital.org/RadiologyService/");
+                   java.lang.String namespacePrefix = registerPrefix(xmlWriter,"http://www.PAHospital.org/RadiologyCallbackService/");
                    if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)){
                        writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                           namespacePrefix+":RadiologyOrder",
+                           namespacePrefix+":RadiologyReport",
                            xmlWriter);
                    } else {
                        writeAttribute("xsi","http://www.w3.org/2001/XMLSchema-instance","type",
-                           "RadiologyOrder",
+                           "RadiologyReport",
                            xmlWriter);
                    }
 
@@ -193,37 +434,67 @@
                                    xmlWriter.writeEndElement();
                              
                                     namespace = "";
-                                    writeStartElement(null, namespace, "CaseID", xmlWriter);
+                                    writeStartElement(null, namespace, "RadiologyOrderID", xmlWriter);
                              
 
-                                          if (localCaseID==null){
+                                          if (localRadiologyOrderID==null){
                                               // write the nil attribute
                                               
-                                                     throw new org.apache.axis2.databinding.ADBException("CaseID cannot be null!!");
+                                                     throw new org.apache.axis2.databinding.ADBException("RadiologyOrderID cannot be null!!");
                                                   
                                           }else{
 
                                         
-                                                   xmlWriter.writeCharacters(localCaseID);
+                                                   xmlWriter.writeCharacters(localRadiologyOrderID);
                                             
                                           }
                                     
                                    xmlWriter.writeEndElement();
                              
-                                            if (localExaminationType==null){
-                                                 throw new org.apache.axis2.databinding.ADBException("ExaminationType cannot be null!!");
-                                            }
-                                           localExaminationType.serialize(new javax.xml.namespace.QName("","ExaminationType"),
-                                               xmlWriter);
+                                    namespace = "";
+                                    writeStartElement(null, namespace, "DateOfExamination", xmlWriter);
+                             
+
+                                          if (localDateOfExamination==null){
+                                              // write the nil attribute
+                                              
+                                                     throw new org.apache.axis2.databinding.ADBException("DateOfExamination cannot be null!!");
+                                                  
+                                          }else{
+
                                         
+                                                   xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localDateOfExamination));
+                                            
+                                          }
+                                    
+                                   xmlWriter.writeEndElement();
+                             
+                                    namespace = "";
+                                    writeStartElement(null, namespace, "ReportText", xmlWriter);
+                             
+
+                                          if (localReportText==null){
+                                              // write the nil attribute
+                                              
+                                                     throw new org.apache.axis2.databinding.ADBException("ReportText cannot be null!!");
+                                                  
+                                          }else{
+
+                                        
+                                                   xmlWriter.writeCharacters(localReportText);
+                                            
+                                          }
+                                    
+                                   xmlWriter.writeEndElement();
+                             
                     xmlWriter.writeEndElement();
                
 
         }
 
         private static java.lang.String generatePrefix(java.lang.String namespace) {
-            if(namespace.equals("http://www.PAHospital.org/RadiologyService/")){
-                return "ns2";
+            if(namespace.equals("http://www.PAHospital.org/RadiologyCallbackService/")){
+                return "ns1";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
         }
@@ -411,23 +682,32 @@
                                         }
                                     
                                       elementList.add(new javax.xml.namespace.QName("",
-                                                                      "CaseID"));
+                                                                      "RadiologyOrderID"));
                                  
-                                        if (localCaseID != null){
-                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localCaseID));
+                                        if (localRadiologyOrderID != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localRadiologyOrderID));
                                         } else {
-                                           throw new org.apache.axis2.databinding.ADBException("CaseID cannot be null!!");
+                                           throw new org.apache.axis2.databinding.ADBException("RadiologyOrderID cannot be null!!");
                                         }
                                     
-                            elementList.add(new javax.xml.namespace.QName("",
-                                                                      "ExaminationType"));
-                            
-                            
-                                    if (localExaminationType==null){
-                                         throw new org.apache.axis2.databinding.ADBException("ExaminationType cannot be null!!");
-                                    }
-                                    elementList.add(localExaminationType);
-                                
+                                      elementList.add(new javax.xml.namespace.QName("",
+                                                                      "DateOfExamination"));
+                                 
+                                        if (localDateOfExamination != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localDateOfExamination));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("DateOfExamination cannot be null!!");
+                                        }
+                                    
+                                      elementList.add(new javax.xml.namespace.QName("",
+                                                                      "ReportText"));
+                                 
+                                        if (localReportText != null){
+                                            elementList.add(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localReportText));
+                                        } else {
+                                           throw new org.apache.axis2.databinding.ADBException("ReportText cannot be null!!");
+                                        }
+                                    
 
                 return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
             
@@ -452,9 +732,9 @@
         * Postcondition: If this object is an element, the reader is positioned at its end element
         *                If this object is a complex type, the reader is positioned at the end element of its outer element
         */
-        public static RadiologyOrder parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
-            RadiologyOrder object =
-                new RadiologyOrder();
+        public static RadiologyReport parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception{
+            RadiologyReport object =
+                new RadiologyReport();
 
             int event;
             java.lang.String nillableValue = null;
@@ -478,10 +758,10 @@
 
                     java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":")+1);
                     
-                            if (!"RadiologyOrder".equals(type)){
+                            if (!"RadiologyReport".equals(type)){
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
-                                return (RadiologyOrder)org.pahospital.www.radiologyservice.ExtensionMapper.getTypeObject(
+                                return (RadiologyReport)ExtensionMapper.getTypeObject(
                                      nsUri,type,reader);
                               }
                         
@@ -525,11 +805,11 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","CaseID").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","RadiologyOrderID").equals(reader.getName())){
                                 
                                     java.lang.String content = reader.getElementText();
                                     
-                                              object.setCaseID(
+                                              object.setRadiologyOrderID(
                                                     org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
                                               
                                         reader.next();
@@ -544,9 +824,31 @@
                                     
                                     while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
                                 
-                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","ExaminationType").equals(reader.getName())){
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","DateOfExamination").equals(reader.getName())){
                                 
-                                                object.setExaminationType(org.pahospital.www.radiologyservice.ExaminationType_type1.Factory.parse(reader));
+                                    java.lang.String content = reader.getElementText();
+                                    
+                                              object.setDateOfExamination(
+                                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToDate(content));
+                                              
+                                        reader.next();
+                                    
+                              }  // End of if for expected property start element
+                                
+                                else{
+                                    // A start element we are not expecting indicates an invalid parameter was passed
+                                    throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getName());
+                                }
+                            
+                                    
+                                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+                                
+                                    if (reader.isStartElement() && new javax.xml.namespace.QName("","ReportText").equals(reader.getName())){
+                                
+                                    java.lang.String content = reader.getElementText();
+                                    
+                                              object.setReportText(
+                                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
                                               
                                         reader.next();
                                     
@@ -581,3 +883,73 @@
         }
            
     
+            private  org.apache.axiom.om.OMElement  toOM(org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport param, boolean optimizeContent)
+            throws org.apache.axis2.AxisFault {
+
+            
+                        try{
+                             return param.getOMElement(org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport.MY_QNAME,
+                                          org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                        } catch(org.apache.axis2.databinding.ADBException e){
+                            throw org.apache.axis2.AxisFault.makeFault(e);
+                        }
+                    
+
+            }
+        
+                                    
+                                        private  org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
+                                        throws org.apache.axis2.AxisFault{
+
+                                             
+                                                    try{
+
+                                                            org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
+                                                            emptyEnvelope.getBody().addChild(param.getOMElement(org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport.MY_QNAME,factory));
+                                                            return emptyEnvelope;
+                                                        } catch(org.apache.axis2.databinding.ADBException e){
+                                                            throw org.apache.axis2.AxisFault.makeFault(e);
+                                                        }
+                                                
+
+                                        }
+                                
+                             
+                             /* methods to provide back word compatibility */
+
+                             
+
+
+        /**
+        *  get the default envelope
+        */
+        private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory){
+        return factory.getDefaultEnvelope();
+        }
+
+
+        private  java.lang.Object fromOM(
+        org.apache.axiom.om.OMElement param,
+        java.lang.Class type,
+        java.util.Map extraNamespaces) throws org.apache.axis2.AxisFault{
+
+        try {
+        
+                if (org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport.class.equals(type)){
+                
+                           return org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                    
+
+                }
+           
+        } catch (java.lang.Exception e) {
+        throw org.apache.axis2.AxisFault.makeFault(e);
+        }
+           return null;
+        }
+
+
+
+    
+   }
+   

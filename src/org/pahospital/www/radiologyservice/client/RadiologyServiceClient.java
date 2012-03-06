@@ -102,7 +102,7 @@ public class RadiologyServiceClient extends JFrame {
 				// update endpoint URL with the value of urlfield
 				url = urlField.getText();
 				try {
-					stub = new RadiologyServiceStub();
+					stub = new RadiologyServiceStub("http://localhost:8080/SOA_-_Assignment_2/services/RadiologyService");
 					RadiologyOrder ro = new RadiologyOrder();
 					ro.setPatientID(patientId.getText());
 					ro.setCaseID(caseId.getText());
@@ -155,7 +155,4 @@ public class RadiologyServiceClient extends JFrame {
 		this.setSize(900, 250);
 		this.setVisible(true);
 	}
-	
-
-
 }

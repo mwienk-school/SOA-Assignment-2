@@ -6,6 +6,8 @@
  */
 package org.pahospital.www.radiologyservice.server;
 
+import java.rmi.RemoteException;
+
 import org.pahospital.www.radiologyservice.*;
 import javax.xml.soap.SOAPException;
 
@@ -47,8 +49,9 @@ public interface RadiologyServiceSkeletonInterface {
 	 * @param radiologyOrder
 	 * @throws SOAPException
 	 * @throws InterruptedException 
+	 * @throws RemoteException 
 	 */
 
-	public RadiologyOrderID orderRadiologyExamination(RadiologyOrder radiologyOrder) throws SOAPException, InterruptedException;
+	public RadiologyOrderID orderRadiologyExamination(RadiologyOrder radiologyOrder) throws SOAPException, InterruptedException, RemoteException;
 
 }

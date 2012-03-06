@@ -138,7 +138,7 @@
   </binding>
   <service name="RadiologyService">
     <port name="RadiologyPort" binding="s0:RadiologyBinding">
-      <soap:address location="http://www.PAHospital.org/RadiologyService"/>
+      <soap:address location="http://localhost:8080/SOA_-_Assignment_2/services/RadiologyService"/>
     </port>
   </service>
 </definitions>

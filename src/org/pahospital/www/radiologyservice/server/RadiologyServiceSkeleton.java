@@ -28,6 +28,13 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	//Keep track of the Appointments
 	protected ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 	
+	/**
+	 * Returns the reports
+	 * @return HashMap<RadiologyOrderID, RadiologyReport> reports
+	 */
+	public HashMap<RadiologyOrderID, RadiologyReport> getReports() {
+		return this.reports;
+	}
 
 	/**
 	 * Request an appointment for a radiology exam.
@@ -96,9 +103,9 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	 * @return radiologyOrderID the radiology order ID
 	 * @throws SOAPException 
 	 * @throws InterruptedException 
+	 * @throws RemoteException 
 	 */
-	public RadiologyOrderID orderRadiologyExamination(RadiologyOrder radiologyOrder) throws SOAPException, InterruptedException {
-		RadiologyOrderID result = null;
+	public RadiologyOrderID orderRadiologyExamination(RadiologyOrder radiologyOrder) throws SOAPException, InterruptedException, RemoteException {
 		RadiologyOrderID id = new RadiologyOrderID();
 		id.setRadiologyOrderID(String.valueOf(this.maxOrderId));
 		if(!this.orderList.containsKey(id)) {
@@ -116,32 +123,18 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 			RadiologyReport report = new RadiologyReport();
 			report.setRadiologyOrderID(id.getRadiologyOrderID());
 			report.setReportText("The result was very positive");
-			report.setRadiologyOrderID(radiologyOrder.getPatientID());
-			report.setDateOfExamination(null);
+			report.setPatientID(radiologyOrder.getPatientID());
+			report.setDateOfExamination(new java.util.Date());
 			reports.put(id, report);
 			
 			//Increment the id
 			this.maxOrderId++;
 			
 			//Send the report back tot the client
-			Thread.sleep(5000);
-			try {
-				this.returnRadiologyReport(id);
-			} catch (RemoteException e) {
-				throw new SOAPException("External error: Remote address error");
-			}
+			(new Thread(new RadiologyReporter(reports, id))).start();
 		} else {
 			throw new SOAPException("Internal error: RadiologyOrderID exists.");
 		}
-		return result;
-	}
-	
-	/**
-	 * Return the report to the client's callback service
-	 * @throws RemoteException 
-	 */
-	private void returnRadiologyReport(RadiologyOrderID id) throws RemoteException {
-		RadiologyCallbackServiceStub stub = new RadiologyCallbackServiceStub("http://localhost:8080/SOA_-_Assignment_2/services/RadiologyCallbackService");
-		stub.sendRadiologyReport(this.reports.get(id));
+		return id;
 	}
 }
