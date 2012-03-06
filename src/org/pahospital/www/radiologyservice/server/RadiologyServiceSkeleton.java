@@ -12,7 +12,7 @@ import java.util.HashMap;
 import javax.xml.soap.SOAPException;
 
 import org.pahospital.www.radiologycallbackservice.*;
-import org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport;
+import org.pahospital.www.radiologycallbackservice.RadiologyReport;
 import org.pahospital.www.radiologyservice.*;
 
 /**
