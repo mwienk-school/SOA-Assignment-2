@@ -45,7 +45,7 @@
   <!-- Service defines the address of Web service -->
   <service name="RadiologyCallbackService">
     <port name="RadiologyCallbackPort" binding="s0:RadiologyCallbackBinding">
-      <soap:address location="http://www.PAHospital.org/RadiologyCallbackService" />
+      <soap:address location="http://localhost:8080/SOA_-_Assignment_2/services/RadiologyCallbackService" />
     </port>
   </service>
 

@@ -6,10 +6,13 @@
  */
 package org.pahospital.www.radiologyservice.server;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.xml.soap.SOAPException;
 
+import org.pahospital.www.radiologycallbackservice.*;
+import org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport;
 import org.pahospital.www.radiologyservice.*;
 
 /**
@@ -21,6 +24,7 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	protected int maxOrderId = 0;
 	protected HashMap<RadiologyOrderID,OrderStatus> orderStatuses = new HashMap<RadiologyOrderID, OrderStatus>();
 	protected HashMap<RadiologyOrderID,Boolean> payments = new HashMap<RadiologyOrderID, Boolean>();
+	protected HashMap<RadiologyOrderID,RadiologyReport> reports = new HashMap<RadiologyOrderID, RadiologyReport>();
 	//Keep track of the Appointments
 	protected ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 	
@@ -34,11 +38,14 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	 */
 
 	public Appointment requestAppointment(Appointment appointment) throws SOAPException {
-		if(orderList.containsKey(appointment.getOrderID())) {
+		RadiologyOrderID id = new RadiologyOrderID();
+		id.setRadiologyOrderID(appointment.getOrderID());
+		if(orderList.containsKey(id.getRadiologyOrderID())) {
 			//Insert the appointment
 			appointments.add(appointment);
 			//Change OrderStatus
 			orderStatuses.get(appointment.getOrderID()).setOrderStatus("appointment made");
+			reports.get(id.getRadiologyOrderID()).setDateOfExamination(appointment.getDate());
 			return appointment;
 		} else {
 			throw new SOAPException("Radiology order ID unknown, please provide an existing order ID.");
@@ -88,8 +95,10 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 	 * @param radiologyOrder the radiology order
 	 * @return radiologyOrderID the radiology order ID
 	 * @throws SOAPException 
+	 * @throws InterruptedException 
 	 */
-	public RadiologyOrderID orderRadiologyExamination(RadiologyOrder radiologyOrder) throws SOAPException {
+	public RadiologyOrderID orderRadiologyExamination(RadiologyOrder radiologyOrder) throws SOAPException, InterruptedException {
+		RadiologyOrderID result = null;
 		RadiologyOrderID id = new RadiologyOrderID();
 		id.setRadiologyOrderID(String.valueOf(this.maxOrderId));
 		if(!this.orderList.containsKey(id)) {
@@ -102,11 +111,37 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 			this.orderStatuses.put(id, status);
 			//Insert the payment
 			payments.put(id, false);
+			
+			//Create a report for this order
+			RadiologyReport report = new RadiologyReport();
+			report.setRadiologyOrderID(id.getRadiologyOrderID());
+			report.setReportText("The result was very positive");
+			report.setRadiologyOrderID(radiologyOrder.getPatientID());
+			report.setDateOfExamination(null);
+			reports.put(id, report);
+			
 			//Increment the id
 			this.maxOrderId++;
-			return id;
+			
+			//Send the report back tot the client
+			Thread.sleep(5000);
+			try {
+				this.returnRadiologyReport(id);
+			} catch (RemoteException e) {
+				throw new SOAPException("External error: Remote address error");
+			}
+		} else {
+			throw new SOAPException("Internal error: RadiologyOrderID exists.");
 		}
-		throw new SOAPException("Internal error: RadiologyOrderID exists.");
+		return result;
 	}
-
+	
+	/**
+	 * Return the report to the client's callback service
+	 * @throws RemoteException 
+	 */
+	private void returnRadiologyReport(RadiologyOrderID id) throws RemoteException {
+		RadiologyCallbackServiceStub stub = new RadiologyCallbackServiceStub("http://localhost:8080/SOA_-_Assignment_2/services/RadiologyCallbackService");
+		stub.sendRadiologyReport(this.reports.get(id));
+	}
 }
