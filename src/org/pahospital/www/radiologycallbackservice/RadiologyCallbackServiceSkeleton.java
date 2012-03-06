@@ -9,8 +9,7 @@ package org.pahospital.www.radiologycallbackservice;
 /**
  * RadiologyCallbackServiceSkeleton java skeleton for the axisService
  */
-public class RadiologyCallbackServiceSkeleton implements
-		RadiologyCallbackServiceSkeletonInterface {
+public class RadiologyCallbackServiceSkeleton implements RadiologyCallbackServiceSkeletonInterface {
 
 	/**
 	 * Auto generated method signature
@@ -19,8 +18,7 @@ public class RadiologyCallbackServiceSkeleton implements
 	 * @return
 	 */
 
-	public void sendRadiologyReport(
-			org.pahospital.www.radiologycallbackservice.RadiologyReport radiologyReport0) {
+	public void sendRadiologyReport(RadiologyReport radiologyReport) {
 		// TODO : fill this with the necessary business logic
 
 	}
