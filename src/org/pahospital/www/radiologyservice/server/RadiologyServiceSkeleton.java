@@ -6,12 +6,10 @@
  */
 package org.pahospital.www.radiologyservice.server;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.xml.soap.SOAPException;
 
-import org.pahospital.www.radiologycallbackservice.*;
 import org.pahospital.www.radiologycallbackservice.RadiologyCallbackServiceStub.RadiologyReport;
 import org.pahospital.www.radiologyservice.*;
 
@@ -117,31 +115,17 @@ public class RadiologyServiceSkeleton implements RadiologyServiceSkeletonInterfa
 			report.setRadiologyOrderID(id.getRadiologyOrderID());
 			report.setReportText("The result was very positive");
 			report.setRadiologyOrderID(radiologyOrder.getPatientID());
-			report.setDateOfExamination(null);
+			report.setDateOfExamination(new java.util.Date());
 			reports.put(id, report);
 			
 			//Increment the id
 			this.maxOrderId++;
 			
 			//Send the report back tot the client
-			Thread.sleep(5000);
-			try {
-				this.returnRadiologyReport(id);
-			} catch (RemoteException e) {
-				throw new SOAPException("External error: Remote address error");
-			}
+			(new Thread(new RadiologyReporter(id,reports))).start();
 		} else {
 			throw new SOAPException("Internal error: RadiologyOrderID exists.");
 		}
-		return result;
-	}
-	
-	/**
-	 * Return the report to the client's callback service
-	 * @throws RemoteException 
-	 */
-	private void returnRadiologyReport(RadiologyOrderID id) throws RemoteException {
-		RadiologyCallbackServiceStub stub = new RadiologyCallbackServiceStub("http://localhost:8080/SOA_-_Assignment_2/services/RadiologyCallbackService");
-		stub.sendRadiologyReport(this.reports.get(id));
+		return id;
 	}
 }
